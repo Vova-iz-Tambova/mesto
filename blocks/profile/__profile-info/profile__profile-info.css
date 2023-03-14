@@ -1,0 +1,17 @@
+.profile__profile-info {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template: repeat(2, auto) / auto;
+  align-content: center;
+  align-self: center;
+  width: 336px;
+  height: 73px;
+}
+
+@media screen and (max-heigth: 900px)  {
+.profile__profile-info {
+  grid-template: auto 18px / auto;
+  width: 282px;
+  height: 54px;
+}
+}
