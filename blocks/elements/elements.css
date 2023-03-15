@@ -11,7 +11,7 @@
 @media screen and (max-width: 968px) {
 .elements {
  width: 320px;
- grid-template: 282px / auto;
+ grid-template: 361px / auto;
  grid-auto-flow: row;
  justify-content: center;
 }
