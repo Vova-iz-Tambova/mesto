@@ -14,9 +14,9 @@
 .profile {
   width: 282px;
   height: 286px;
-  margin-top: 42px;
   grid-auto-flow: row;
   grid-template-columns: auto;
   justify-items: center;
+  gap: 0 0;
 }
 }
