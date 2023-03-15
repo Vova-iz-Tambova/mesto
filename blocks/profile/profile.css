@@ -11,9 +11,10 @@
   gap: 0 30px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 968px) {
 .profile {
-  width: 282px;
+  width: 88.125vw;
+  min-width: 282px;
   height: 286px;
   margin-top: 42px;
   grid-auto-flow: row;

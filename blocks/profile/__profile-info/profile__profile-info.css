@@ -8,7 +8,7 @@
   height: 73px;
 }
 
-@media screen and (max-heigth: 900px)  {
+@media screen and (max-heigth: 968px)  {
 .profile__profile-info {
   grid-template: auto 18px / auto;
   width: 282px;
