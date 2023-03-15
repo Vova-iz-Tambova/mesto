@@ -1,0 +1,6 @@
+.elements__photo {
+  height: 282px;
+  width: 282px;
+  border-radius: 10px 10px 0 0;
+  grid-column: span 2;
+}
