@@ -1,0 +1,10 @@
+.edit__close {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  right: -40px;
+  top: -40px;
+  background-image: url(../../../images/close.svg);
+  background-color: transparent;
+  border: none;
+}

@@ -1,0 +1,8 @@
+.edit__form {
+  position: relative;
+  width: 430px;
+  height: 330px;
+  background-color: #fff;
+  border-radius: 10px;
+  color: black;
+}

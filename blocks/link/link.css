@@ -1,5 +1,6 @@
 .link {
   color: white;
+  cursor: pointer;
   transition: opacity .3s ease-in-out;
 }
 

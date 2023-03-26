@@ -1,0 +1,9 @@
+.edit__field {
+  width: 358px;
+  height: 27px;
+  border-bottom: 1px solid #000;
+  margin: 30px auto 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.94px;
+}
