@@ -11,7 +11,7 @@
   justify-self: center;
 }
 
-@media screen and (mai-width: 968px) {
+@media screen and (max-width: 968px) {
   .footer {
     width: 88.125vw;
     margin-top: 48px;

@@ -7,3 +7,9 @@
   font-size: 14px;
   line-height: 16.94px;
 }
+
+@media screen and (max-width: 968px) {
+.edit__field {
+  width: 238px;
+  height: 27px;
+}
