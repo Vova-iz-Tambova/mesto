@@ -32,3 +32,5 @@
 @import url(../blocks/edit/__close/edit__close.css);
 @import url(../blocks/edit/__submit/edit__submit.css);
 @import url(../blocks/edit/_active/edit_active.css);
+@import url(../blocks/edit/__proname/edit__proname.css);
+@import url(../blocks/edit/__projob/edit__projob.css);
