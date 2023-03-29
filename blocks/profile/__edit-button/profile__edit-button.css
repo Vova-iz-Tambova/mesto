@@ -5,6 +5,11 @@
   align-self: center;
   justify-self: end;
   display: grid;
+  background-image: url(../../../images/edit.svg);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-position: center;
+  background-size: 14px 14px;
 }
 
 @media screen and (max-width: 968px) {

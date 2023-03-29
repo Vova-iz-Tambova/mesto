@@ -5,6 +5,10 @@
   align-self: center;
   justify-self: end;
   display: grid;
+  background-image: url(../../../images/plus.svg);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-position: center;
 }
 
 @media screen and (max-width: 968px) {
