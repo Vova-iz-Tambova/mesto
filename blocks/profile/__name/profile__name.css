@@ -6,11 +6,10 @@
 }
 
 @media screen and (max-width: 968px) {
-.profile__name {
-  font-weight: 500;
-  font-size: 27px;
-  line-height: 32.68px;
-  justify-self: center;
-  grid-column: span 2;
-}
+  .profile__name {
+    font-size: 27px;
+    line-height: 32.68px;
+    justify-self: center;
+    grid-column: span 2;
+  }
 }

@@ -9,14 +9,22 @@
   background-repeat: no-repeat;
   background-color: transparent;
   background-position: center;
+  cursor: pointer;
+  transition: opacity .3s ease-in-out;
+  border-radius: 2px;
+}
+
+.profile__add-button:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 968px) {
-.profile__add-button {
-  width: 280px;
-  height: 48px;
-  align-self: end;
-  justify-self: center;
-  display: grid;
-}
+  .profile__add-button {
+    margin-top: 36px;
+    width: 280px;
+    height: 48px;
+    align-self: end;
+    justify-self: center;
+    display: grid;
+  }
 }

@@ -17,65 +17,65 @@
   <main class="main">
 
     <section class="profile">
-      <img src="./images/image.jpg" alt="аватар" class="profile__avatar">
+      <img src="./images/bp.jpeg" alt="аватар" class="profile__avatar">
       <div class="profile__profile-info">
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button  link" type="button"></button>
-        <p class="profile__status">Исследователь океана</p>
+        <h1 class="profile__name block">Жак-Ив Кусто</h1>
+        <button class="profile__edit-button" type="button"></button>
+        <p class="profile__status block">Исследователь океана</p>
       </div>
-      <button class="profile__add-button  link" type="button"></button>
+      <button class="profile__add-button" type="button"></button>
     </section>
 
     <elements class="elements">
       <div class="elements__element">
         <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фотография" class="elements__photo">
         <h2 class="elements__tag  block">Карачаевск</h2>
-        <button class="elements__like  link" type="button"></button>
+        <button class="elements__like" type="button"></button>
       </div>
       <div class="elements__element">
         <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="фотография" class="elements__photo">
         <h2 class="elements__tag  block">Гора Эльбрус</h2>
-        <button class="elements__like  link" type="button"></button>
+        <button class="elements__like" type="button"></button>
       </div>
       <div class="elements__element">
         <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="фотография" class="elements__photo">
         <h2 class="elements__tag  block">Домбай</h2>
-        <button class="elements__like  link" type="button"></button>
+        <button class="elements__like" type="button"></button>
       </div>
       <div class="elements__element">
         <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="фотография" class="elements__photo">
         <h2 class="elements__tag  block">Гора Эльбрус</h2>
-        <button class="elements__like  link" type="button"></button>
+        <button class="elements__like" type="button"></button>
       </div>
       <div class="elements__element">
         <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="фотография" class="elements__photo">
         <h2 class="elements__tag  block">Домбай</h2>
-        <button class="elements__like  link" type="button"></button>
+        <button class="elements__like" type="button"></button>
       </div>
       <div class="elements__element">
         <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фотография" class="elements__photo">
         <h2 class="elements__tag  block">Карачаево-черкессия</h2>
-        <button class="elements__like  link" type="button"></button>
+        <button class="elements__like" type="button"></button>
       </div>
     </elements>
   </main>
 
-  <footer class="footer"><p>&copy; 2023 Вова из Тамбова</p></footer>
+  <footer class="footer">
+    <p>&copy; 2023 Вова из Тамбова</p>
+  </footer>
 
-  <section class="edit">
-    <div class="edit__form">
-      <button class="edit__close  link"></button>
-      <h2 class="edit__title">Редактировать профиль</h2>
-      <div class="edit__field">
-        <input type="text" class="edit__proname">
+  <div class="popup">
+    <div class="popup__container">
+      <button class="popup__close  link" type="button"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <div class="popup__form">
+        <input type="text" class="popup__proname" name="name">
+        <input type="text" class="popup__projob" name="job">
+        <button class="popup__submit">Сохранить</button>
       </div>
-      <div class="edit__field">
-        <input type="text" class="edit__projob">
-      </div>
-      <button class="edit__submit  link">Сохранить</button>
     </div>
-  </section>
-  <script src="./index.js"></script>
+  </div>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>

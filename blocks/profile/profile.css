@@ -1,7 +1,6 @@
 .profile {
   max-width: 880px;
   width: 68.75vw;
-  height: 120px;
   justify-self: center;
   margin-top: 40px;
   display: grid;
@@ -13,7 +12,6 @@
 @media screen and (max-width: 968px) {
 .profile {
   width: 282px;
-  height: 286px;
   grid-auto-flow: row;
   grid-template-columns: auto;
   justify-items: center;

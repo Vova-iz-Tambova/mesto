@@ -1,4 +1,4 @@
-.edit__close {
+.popup__close {
   position: absolute;
   width: 32px;
   height: 32px;
@@ -10,8 +10,11 @@
 }
 
 @media screen and (max-width: 968px) {
-.edit__close {
-  right: 0;
-  top: -48px;
-}
+  .popup__close {
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    right: 0;
+    top: -36px;
+  }
 }

@@ -8,4 +8,10 @@
   background-color: transparent;
   background-position: center;
   border: none;
+  cursor: pointer;
+  transition: opacity .3s ease-in-out;
+}
+
+.elements__like:hover {
+  opacity: .5;
 }

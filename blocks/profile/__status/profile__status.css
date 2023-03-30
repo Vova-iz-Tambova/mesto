@@ -7,10 +7,9 @@
 }
 
 @media screen and (max-width: 968px) {
-.profile__status {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16.94px;
-  justify-self: center;
-}
+  .profile__status {
+    font-size: 14px;
+    line-height: 16.94px;
+    justify-self: center;
+  }
 }
