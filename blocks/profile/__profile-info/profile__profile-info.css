@@ -7,9 +7,11 @@
   gap: 16px 18px;
 }
 
-@media screen and (max-width: 968px)  {
-.profile__profile-info {
-  width: 282px;
-  gap: 14px;
-}
+@media screen and (max-width: 968px) {
+  .profile__profile-info {
+    margin-top: 19px;
+    width: 282px;
+    gap: 14px 0;
+    grid-template: fr 18px / auto auto;
+  }
 }

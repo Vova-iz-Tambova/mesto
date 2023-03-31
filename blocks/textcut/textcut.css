@@ -1,8 +1,6 @@
-.block {
+.textcut {
   width: 100%;
   text-overflow: ellipsis;
-  text-align: center;
-  overflow-wrap: break-word;
   white-space: nowrap;
   overflow: hidden;
 }

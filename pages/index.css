@@ -1,7 +1,7 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/inter.css);
 @import url(../blocks/link/link.css);
-@import url(../blocks/block/block.css);
+@import url(../blocks/textcut/textcut.css);
 
 @import url(../blocks/page/page.css);
 @import url(../blocks/header/header.css);
@@ -26,6 +26,7 @@
 @import url(../blocks/elements/__like/elements__like.css);
 
 @import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyrigth/footer__copyrigth.css);
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);

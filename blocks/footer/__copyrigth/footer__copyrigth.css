@@ -1,16 +1,14 @@
-.profile__status {
+.footer__copyrigth {
   font-weight: 400;
   font-size: 18px;
   line-height: 21.78px;
-  margin: 0;
-  grid-column: span 2;
-  text-align: center;
+  color: #545454;
 }
 
 @media screen and (max-width: 968px) {
-  .profile__status {
+  .footer__copyrigth {
     font-size: 14px;
     line-height: 16.94px;
-    justify-self: center;
   }
+
 }

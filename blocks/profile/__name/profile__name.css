@@ -3,6 +3,7 @@
   font-size: 42px;
   line-height: 48px;
   margin: 0;
+  text-align: center;
 }
 
 @media screen and (max-width: 968px) {
@@ -10,6 +11,6 @@
     font-size: 27px;
     line-height: 32.68px;
     justify-self: center;
-    grid-column: span 2;
+    margin-left: 18px;
   }
 }
