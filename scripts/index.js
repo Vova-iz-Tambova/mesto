@@ -1,31 +1,31 @@
-const editElement = document.querySelector('.popup');
-const editProfileButtonElement = document.querySelector('.profile__edit-button');
-const editCloseButtonElement = editElement.querySelector('.popup__close');
-const formElement = document.querySelector('.profile__profile-info');
-const nameInput = formElement.querySelector('.profile__name');
-const jobInput = formElement.querySelector('.profile__status');
-const editProName = editElement.querySelector('.popup__proname');
-const editProJob = editElement.querySelector('.popup__projob');
-const formElementSubmit = editElement.querySelector('.popup__submit');
+const popupElement = document.querySelector('.popup');
+const popupProfileButtonElement = document.querySelector('.profile__edit-button');
+const popupCloseButtonElement = popupElement.querySelector('.popup__close');
+const profileElement = document.querySelector('.profile__profile-info');
+const nameVar = profileElement.querySelector('.profile__name');
+const jobVar = profileElement.querySelector('.profile__status');
+const popupProName = popupElement.querySelector('.popup__form_proname');
+const popupProJob = popupElement.querySelector('.popup__form_projob');
+const formElementSubmit = popupElement.querySelector('.popup__submit');
 
 //открытие окна
-const editOn = function () {
-  editProName.value = nameInput.textContent;
-  editProJob.value = jobInput.textContent;
-  editElement.classList.add('popup_opened');
+const popupOn = function () {
+  popupProName.value = nameVar.textContent;
+  popupProJob.value = jobVar.textContent;
+  popupElement.classList.add('popup_opened');
 };
 // закрытие окна
-const editOff = function () { editElement.classList.remove('popup_opened'); };
+const popupOff = function () { popupElement.classList.remove('popup_opened'); };
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
-  nameInput.textContent = editProName.value;
-  jobInput.textContent = editProJob.value;
-  editOff();
+  nameVar.textContent = popupProName.value;
+  jobVar.textContent = popupProJob.value;
+  popupOff();
 }
 
-editProfileButtonElement.addEventListener('click', editOn);
-editCloseButtonElement.addEventListener('click', editOff);
+popupProfileButtonElement.addEventListener('click', popupOn);
+popupCloseButtonElement.addEventListener('click', popupOff);
 
 // отправка формы
 formElementSubmit.addEventListener('click', handleFormSubmit);

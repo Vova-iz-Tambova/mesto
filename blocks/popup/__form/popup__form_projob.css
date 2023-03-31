@@ -1,18 +1,19 @@
-.popup__proname {
+.popup__form_projob {
   border: none;
   outline: none;
   width: 358px;
   height: 27px;
   border-bottom: 1px solid rgb(0, 0, 0, .2);
-  padding-left: 30px;
-  margin: 29px auto 0;
+  margin-left: 34px;
   font-weight: 400;
   font-size: 14px;
   line-height: 16.94px;
+  margin-top: 28px;
 }
 
 @media screen and (max-width: 968px) {
-  .popup__proname {
+  .popup__form_projob {
     width: 238px;
+    margin-left: 20px;
   }
 }

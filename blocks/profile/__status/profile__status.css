@@ -4,13 +4,13 @@
   line-height: 21.78px;
   margin: 0;
   grid-column: span 2;
-  text-align: center;
+
 }
 
 @media screen and (max-width: 968px) {
   .profile__status {
     font-size: 14px;
     line-height: 16.94px;
-    justify-self: center;
+    text-align: center;
   }
 }
