@@ -4,10 +4,7 @@
   width: 68.75vw;
   margin-top: 67px;
   margin-bottom: 60px;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 21.78px;
-  color: #545454;
+
   justify-self: center;
 }
 
@@ -16,7 +13,5 @@
     width: 88.125vw;
     margin-top: 48px;
     margin-bottom: 36px;
-    font-size: 14px;
-    line-height: 16.94px;
   }
 }

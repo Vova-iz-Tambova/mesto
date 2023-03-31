@@ -6,25 +6,18 @@
   justify-self: end;
   display: grid;
   background-image: url(../../../images/edit.svg);
+  background-size: 10px 10px;
   background-repeat: no-repeat;
   background-color: transparent;
   background-position: center;
-  background-size: 14px 14px;
-  cursor: pointer;
-  transition: opacity .3s ease-in-out;
-}
-
-.profile__edit-button:hover {
-  opacity: .69;
 }
 
 @media screen and (max-width: 968px) {
   .profile__edit-button {
-    position: absolute;
-    left: auto;
-    top: auto;
-    align-self: baseline;
-    margin-top: 5px;
-    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    align-self: center;
+    justify-self: start;
+    background-size: 8px 8px;
   }
 }
