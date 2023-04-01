@@ -1,17 +1,10 @@
 .profile__profile-info {
-  display: grid;
-  grid-template: repeat(2, auto) / auto 24px;
-  align-content: center;
-  align-self: center;
-  width: 336px;
-  gap: 8px 18px;
+
 }
 
 @media screen and (max-width: 968px) {
   .profile__profile-info {
     margin-top: 19px;
     width: 282px;
-    gap: 7px 0;
-    grid-template: auto auto / auto 18px;
   }
 }

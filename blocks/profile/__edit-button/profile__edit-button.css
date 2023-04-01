@@ -2,24 +2,21 @@
   width: 24px;
   height: 24px;
   border: 1px solid white;
-  align-self: center;
-  justify-self: end;
-  display: grid;
   background-image: url(../../../images/edit.svg);
   background-size: 10px 10px;
   background-repeat: no-repeat;
   background-color: transparent;
   background-position: center;
-  margin-top: 4px;
+  margin-top: 38px;
   margin-right: 1px;
+  margin-left: 19px;
 }
 
 @media screen and (max-width: 968px) {
   .profile__edit-button {
     width: 18px;
     height: 18px;
-    align-self: center;
-    justify-self: start;
     background-size: 8px 8px;
+    margin-left: 10px;
   }
 }

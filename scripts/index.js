@@ -4,8 +4,8 @@ const popupCloseButtonElement = popupElement.querySelector('.popup__close');
 const profileElement = document.querySelector('.profile__profile-info');
 const nameVar = profileElement.querySelector('.profile__name');
 const jobVar = profileElement.querySelector('.profile__status');
-let popupProName = popupElement.querySelector('.popup__form_proname');
-let popupProJob = popupElement.querySelector('.popup__form_projob');
+let popupProName = popupElement.querySelector('.popup__input_text_name');
+let popupProJob = popupElement.querySelector('.popup__input_text_job');
 const formElementSubmit = popupElement.querySelector('.popup__form');
 
 //открытие окна

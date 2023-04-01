@@ -1,19 +1,20 @@
-.popup__form_projob {
+.popup__input_text_name {
   border: none;
   outline: none;
   width: 358px;
-  height: 27px;
+  height: 30px;
   border-bottom: 1px solid rgb(0, 0, 0, .2);
   margin-left: 34px;
   font-weight: 400;
   font-size: 14px;
   line-height: 16.94px;
-  margin-top: 28px;
+  margin-top: 22px;
 }
 
 @media screen and (max-width: 968px) {
-  .popup__form_projob {
+  .popup__input_text_name {
     width: 238px;
     margin-left: 20px;
+    margin-top: 52px;
   }
 }
