@@ -1,6 +1,6 @@
 .elements {
   width: 880px;
-  margin-top: 51px;
+  margin-top: 50px;
   justify-self: center;
   display: grid;
   grid-template-columns: repeat(auto-fill, 282px);
@@ -13,6 +13,6 @@
     grid-template: 361px / auto;
     grid-auto-flow: row;
     justify-content: center;
-    margin-top: 38px;
+    margin-top: 35px;
   }
 }
