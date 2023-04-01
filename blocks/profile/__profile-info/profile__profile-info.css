@@ -12,6 +12,6 @@
     margin-top: 19px;
     width: 282px;
     gap: 7px 0;
-    grid-template: fr 18px / auto auto;
+    grid-template: auto auto / auto 18px;
   }
 }
