@@ -2,10 +2,12 @@
   display: flex;
   align-items: baseline;
   max-width: 450px;
+  margin: 0;
 }
 
 @media screen and (max-width: 968px) {
   .profile__container {
     justify-content: center;
+    align-items: start;
   }
 }
