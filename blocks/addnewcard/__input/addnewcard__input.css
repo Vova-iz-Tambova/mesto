@@ -1,0 +1,29 @@
+.addnewcard__input {
+  border: none;
+  outline: none;
+  width: 358px;
+  height: 30px;
+  border-bottom: 1px solid rgb(0, 0, 0, .2);
+  margin-left: 34px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.94px;
+  margin-top: 22px;
+}
+
+.addnewcard__input:last-of-type {
+  height: 32px;
+  margin-top: 21px;
+}
+
+@media screen and (max-width: 968px) {
+  .addnewcard__input {
+    width: 238px;
+    margin-left: 20px;
+    margin-top: 52px;
+  }
+
+  .addnewcard__input:last-of-type {
+    margin-top: 23px;
+  }
+}

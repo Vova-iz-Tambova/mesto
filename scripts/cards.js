@@ -27,6 +27,10 @@ const initialCards = [
 
 const cardTemplate = document.querySelector('.card');
 const cardGrid = document.querySelector('.elements');
+const newCardPopup = document.querySelector('.addnewcard');
+const newCardButton = document.querySelector('.profile__add-button');
+const closeCardButton = document.querySelector('.addnewcard__close');
+const newCardForm = document.querySelector('.addnewcard__form');
 
 const createCardElement = (cardData) => {
   const cardElement = cardTemplate.content
@@ -64,3 +68,38 @@ const addCardElement = (cardElement) => {
 initialCards.forEach((card) => {
   addCardElement(createCardElement(card));
 });
+
+const openPopup = (newCardPopup) => {
+  newCardPopup.classList.add('addnewcard_open');
+};
+
+const closePopup = (newCardPopup) => {
+  newCardPopup.classList.remove('addnewcard_open');
+};
+
+newCardButton.addEventListener('click', () => {
+  openPopup(newCardPopup);
+});
+
+closeCardButton.addEventListener('click', () => {
+  closePopup(newCardPopup);
+});
+
+const handleNewCardSubmit = (event) => {
+  event.preventDefault();
+
+  const nameInput = newCardForm.querySelector('.addnewcard__input_text_name');
+  const linkInput = newCardForm.querySelector('.addnewcard__input_text_link');
+
+  const name = nameInput.value;
+  const link = linkInput.value;
+
+  const newCardData = {
+    name, link
+  };
+
+  addCardElement(createCardElement(newCardData));
+  closePopup(newCardPopup);
+};
+
+newCardForm.addEventListener('submit', handleNewCardSubmit);
