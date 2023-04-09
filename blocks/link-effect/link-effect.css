@@ -1,9 +1,9 @@
-.link {
+.link-effect {
   color: white;
   cursor: pointer;
   transition: opacity .3s ease-in-out;
 }
 
-.link:hover {
+.link-effect:hover {
   opacity: .6;
 }

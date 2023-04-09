@@ -21,7 +21,7 @@
       <div class="profile__profile-info">
         <div class="profile__container">
           <h1 class="profile__name textcut">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button link" type="button"></button>
+          <button class="profile__edit-button link-effect" type="button"></button>
         </div>
         <p class="profile__status textcut">Исследователь океана</p>
       </div>
@@ -29,36 +29,7 @@
     </section>
 
     <section class="elements">
-      <div class="elements__element">
-        <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фотография" class="elements__photo">
-        <h2 class="elements__tag  textcut">Карачаевск</h2>
-        <button class="elements__like" type="button"></button>
-      </div>
-      <div class="elements__element">
-        <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="фотография" class="elements__photo">
-        <h2 class="elements__tag  textcut">Гора Эльбрус</h2>
-        <button class="elements__like" type="button"></button>
-      </div>
-      <div class="elements__element">
-        <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="фотография" class="elements__photo">
-        <h2 class="elements__tag  textcut">Домбай</h2>
-        <button class="elements__like" type="button"></button>
-      </div>
-      <div class="elements__element">
-        <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="фотография" class="elements__photo">
-        <h2 class="elements__tag  textcut">Гора Эльбрус</h2>
-        <button class="elements__like" type="button"></button>
-      </div>
-      <div class="elements__element">
-        <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="фотография" class="elements__photo">
-        <h2 class="elements__tag  textcut">Домбай</h2>
-        <button class="elements__like" type="button"></button>
-      </div>
-      <div class="elements__element">
-        <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фотография" class="elements__photo">
-        <h2 class="elements__tag  textcut">Карачаево-Черкессия</h2>
-        <button class="elements__like" type="button"></button>
-      </div>
+
     </section>
   </main>
 
@@ -68,7 +39,7 @@
 
   <div class="popup">
     <div class="popup__container">
-      <button class="popup__close  link" type="button"></button>
+      <button class="popup__close  link-effect" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="form">
         <input type="text" class="popup__input  popup__input_text_name" name="name">
@@ -77,7 +48,17 @@
       </form>
     </div>
   </div>
+
+  <template class="card">
+    <div class="elements__element">
+      <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фотография" class="elements__photo">
+      <h2 class="elements__tag  textcut">Карачаевск</h2>
+      <button class="elements__like" type="button"></button>
+      <button class="card__delete-button link-effect" type="button"></button>
+    </div>
+  </template>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/cards.js"></script>
 </body>
 
 </html>
