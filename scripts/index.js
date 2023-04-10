@@ -4,9 +4,9 @@ const popupCloseButtonElement = popupElement.querySelector('.popup__close');
 const profileElement = document.querySelector('.profile__profile-info');
 const nameVar = profileElement.querySelector('.profile__name');
 const jobVar = profileElement.querySelector('.profile__status');
-let popupProName = popupElement.querySelector('.popup__input_text_name');
-let popupProJob = popupElement.querySelector('.popup__input_text_job');
-const formElementSubmit = popupElement.querySelector('.popup__form');
+const popupProName = popupElement.querySelector('.popup__input_text_name');
+const popupProJob = popupElement.querySelector('.popup__input_text_job');
+const profileEditSubmit = popupElement.querySelector('.popup__form');
 
 //открытие окна
 const showPopup = function () {
@@ -17,7 +17,7 @@ const showPopup = function () {
 // закрытие окна
 const hidePopup = function () { popupElement.classList.remove('popup_opened'); };
 
-function handleFormSubmit(event) {
+function handleEditFormSubmit(event) {
   event.preventDefault();
   nameVar.textContent = popupProName.value;
   jobVar.textContent = popupProJob.value;
@@ -28,5 +28,5 @@ popupProfileButtonElement.addEventListener('click', showPopup);
 popupCloseButtonElement.addEventListener('click', hidePopup);
 
 // отправка формы
-formElementSubmit.addEventListener('submit', handleFormSubmit);
+profileEditSubmit.addEventListener('submit', handleEditFormSubmit);
 

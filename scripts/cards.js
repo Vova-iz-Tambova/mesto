@@ -34,7 +34,7 @@ const newCardForm = document.querySelector('.addnewcard__form');
 const nameInput = newCardForm.querySelector('.addnewcard__input_text_name');
 const linkInput = newCardForm.querySelector('.addnewcard__input_text_link');
 const fullScreenPhotoPopup = document.querySelector('.fullscreencard');
-const closefullScreenPhotoPopup = document.querySelector('.fullscreencard__close');
+const closefullScreenPhotoPopupButton = document.querySelector('.fullscreencard__close');
 const fullScreenPhotoData = fullScreenPhotoPopup.querySelector('.fullscreencard__photo_link');
 const fullScreenTitleData = fullScreenPhotoPopup.querySelector('.fullscreencard__title_name');
 
@@ -50,31 +50,29 @@ const createCardElement = (cardData) => {
   cardPhoto.src = cardData.link;
   cardPhoto.alt = cardData.name;
 
-  const deleteCardButton = cardElement.querySelector('.card__delete-button_type_delete');
+  const deleteCardButton = cardElement.querySelector('.card__delete-button');
   const likeCardButton = cardElement.querySelector('.elements__like_type_like');
-  const showCardPhoto = cardElement.querySelector('.elements__photo');
 
-  handleDelete = () => {
+  const handleDelete = () => {
     cardElement.remove();
   };
 
-  handleLike = () => {
+  const handleLike = () => {
     likeCardButton.classList.toggle('elements__like_active');
   };
 
-  handlePhoto = () => {
-    fullScreenPhotoData.src = showCardPhoto.src;
+  const handlePhoto = () => {
+    fullScreenPhotoData.src = cardPhoto.src;
+    fullScreenPhotoData.alt = cardName.textContent;
     fullScreenTitleData.textContent = cardName.textContent;
     fullScreenPhotoPopup.classList.add('fullscreencard_open');
   };
 
-  closefullScreenPhotoPopup.addEventListener('click', () => {
-    fullScreenPhotoPopup.classList.remove('fullscreencard_open');
-  });
+
 
   deleteCardButton.addEventListener('click', handleDelete);
   likeCardButton.addEventListener('click', handleLike);
-  showCardPhoto.addEventListener('click', handlePhoto);
+  cardPhoto.addEventListener('click', handlePhoto);
 
   return cardElement;
 };
@@ -106,8 +104,8 @@ closeCardButton.addEventListener('click', () => {
 const handleNewCardSubmit = (event) => {
   event.preventDefault();
 
-  let name = nameInput.value;
-  let link = linkInput.value;
+  const name = nameInput.value;
+  const link = linkInput.value;
 
   const newCardData = {
     name, link
@@ -119,3 +117,9 @@ const handleNewCardSubmit = (event) => {
 };
 
 newCardForm.addEventListener('submit', handleNewCardSubmit);
+
+const closeFullScreenPopup = () => {
+  fullScreenPhotoPopup.classList.remove('fullscreencard_open');
+};
+
+closefullScreenPhotoPopupButton.addEventListener('click', closeFullScreenPopup);
