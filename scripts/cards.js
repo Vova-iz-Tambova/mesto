@@ -68,8 +68,6 @@ const createCardElement = (cardData) => {
     fullScreenPhotoPopup.classList.add('fullscreencard_open');
   };
 
-
-
   deleteCardButton.addEventListener('click', handleDelete);
   likeCardButton.addEventListener('click', handleLike);
   cardPhoto.addEventListener('click', handlePhoto);
@@ -86,11 +84,11 @@ initialCards.forEach((card) => {
 });
 
 const openPopup = (newCardPopup) => {
-  newCardPopup.classList.add('addnewcard_open');
+  newCardPopup.classList.add('popup_open');
 };
 
 const closePopup = (newCardPopup) => {
-  newCardPopup.classList.remove('addnewcard_open');
+  newCardPopup.classList.remove('popup_open');
 };
 
 newCardButton.addEventListener('click', () => {

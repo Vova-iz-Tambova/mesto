@@ -1,4 +1,4 @@
-const popupElement = document.querySelector('.popup');
+const popupElement = document.querySelector('.profeditpopup');
 const popupProfileButtonElement = document.querySelector('.profile__edit-button');
 const popupCloseButtonElement = popupElement.querySelector('.popup__close');
 const profileElement = document.querySelector('.profile__profile-info');
@@ -12,10 +12,10 @@ const profileEditSubmit = popupElement.querySelector('.popup__form');
 const showPopup = function () {
   popupProName.value = nameVar.textContent;
   popupProJob.value = jobVar.textContent;
-  popupElement.classList.add('popup_opened');
+  popupElement.classList.add('popup_open');
 };
 // закрытие окна
-const hidePopup = function () { popupElement.classList.remove('popup_opened'); };
+const hidePopup = function () { popupElement.classList.remove('popup_open'); };
 
 function handleEditFormSubmit(event) {
   event.preventDefault();

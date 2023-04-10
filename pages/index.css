@@ -30,14 +30,13 @@
 @import url(../blocks/footer/__copyrigth/footer__copyrigth.css);
 
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/_open/popup_open.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__submit/popup__submit.css);
 
-@import url(../blocks/addnewcard/addnewcard.css);
 @import url(../blocks/addnewcard/__container/addnewcard__container.css);
 @import url(../blocks/addnewcard/_open/addnewcard_open.css);
 @import url(../blocks/addnewcard/__close/addnewcard__close.css);
