@@ -33,6 +33,10 @@ const closeCardButton = document.querySelector('.addnewcard__close');
 const newCardForm = document.querySelector('.addnewcard__form');
 const nameInput = newCardForm.querySelector('.addnewcard__input_text_name');
 const linkInput = newCardForm.querySelector('.addnewcard__input_text_link');
+const fullScreenPhotoPopup = document.querySelector('.fullscreencard');
+const closefullScreenPhotoPopup = document.querySelector('.fullscreencard__close');
+const fullScreenPhotoData = fullScreenPhotoPopup.querySelector('.fullscreencard__photo_link');
+const fullScreenTitleData = fullScreenPhotoPopup.querySelector('.fullscreencard__title_name');
 
 const createCardElement = (cardData) => {
   const cardElement = cardTemplate.content
@@ -48,6 +52,7 @@ const createCardElement = (cardData) => {
 
   const deleteCardButton = cardElement.querySelector('.card__delete-button_type_delete');
   const likeCardButton = cardElement.querySelector('.elements__like_type_like');
+  const showCardPhoto = cardElement.querySelector('.elements__photo');
 
   handleDelete = () => {
     cardElement.remove();
@@ -57,8 +62,19 @@ const createCardElement = (cardData) => {
     likeCardButton.classList.toggle('elements__like_active');
   };
 
+  handlePhoto = () => {
+    fullScreenPhotoData.src = showCardPhoto.src;
+    fullScreenTitleData.textContent = cardName.textContent;
+    fullScreenPhotoPopup.classList.add('fullscreencard_open');
+  };
+
+  closefullScreenPhotoPopup.addEventListener('click', () => {
+    fullScreenPhotoPopup.classList.remove('fullscreencard_open');
+  });
+
   deleteCardButton.addEventListener('click', handleDelete);
   likeCardButton.addEventListener('click', handleLike);
+  showCardPhoto.addEventListener('click', handlePhoto);
 
   return cardElement;
 };

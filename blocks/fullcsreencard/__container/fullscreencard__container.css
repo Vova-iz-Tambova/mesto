@@ -1,0 +1,11 @@
+.fullscreencard__container {
+  position: relative;
+  max-width: 75vw;
+
+}
+
+@media screen and (max-width: 968px) {
+  .fullscreencard__container {
+    width: 282px;
+  }
+}

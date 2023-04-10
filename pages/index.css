@@ -42,3 +42,10 @@
 @import url(../blocks/addnewcard/_open/addnewcard_open.css);
 @import url(../blocks/addnewcard/__close/addnewcard__close.css);
 @import url(../blocks/addnewcard/__input/addnewcard__input.css);
+
+@import url(../blocks/fullcsreencard/fullscreencard.css);
+@import url(../blocks/fullcsreencard/_open/fullscreencard__open.css);
+@import url(../blocks/fullcsreencard/__container/fullscreencard__container.css);
+@import url(../blocks/fullcsreencard/__close/fullscreencard__close.css);
+@import url(../blocks/fullcsreencard/__photo/fullscreencard__photo.css);
+@import url(../blocks/fullcsreencard/__title/fullscreencard__title.css);
