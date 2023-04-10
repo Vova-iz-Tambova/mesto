@@ -1,3 +1,5 @@
 .addnewcard_open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  transition: .3s ease-in-out;
 }
