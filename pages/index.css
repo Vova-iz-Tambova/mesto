@@ -32,21 +32,10 @@
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_open/popup_open.css);
 @import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__container-photo/popup__continer-photo.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__submit/popup__submit.css);
-
-@import url(../blocks/addnewcard/__container/addnewcard__container.css);
-@import url(../blocks/addnewcard/_open/addnewcard_open.css);
-@import url(../blocks/addnewcard/__close/addnewcard__close.css);
-@import url(../blocks/addnewcard/__input/addnewcard__input.css);
-@import url(../blocks/addnewcard/__title/addnewcard__title.css);
-@import url(../blocks/addnewcard/__submit/addnewcard__submit.css);
-
-@import url(../blocks/fullcsreencard/fullscreencard.css);
-@import url(../blocks/fullcsreencard/_open/fullscreencard__open.css);
-@import url(../blocks/fullcsreencard/__container/fullscreencard__container.css);
-@import url(../blocks/fullcsreencard/__close/fullscreencard__close.css);
-@import url(../blocks/fullcsreencard/__photo/fullscreencard__photo.css);
-@import url(../blocks/fullcsreencard/__title/fullscreencard__title.css);
+@import url(../blocks/popup/fullscreen-photo/popup__fullscreen-photo.css);
+@import url(../blocks/popup/fullscreen-title/popup__fullscreen-title.css);
