@@ -5,25 +5,25 @@ const popupCloseButtonElement = popupElement.querySelector('.popup__close');
 const profileElement = document.querySelector('.profile__profile-info');
 const nameVar = profileElement.querySelector('.profile__name');
 const jobVar = profileElement.querySelector('.profile__status');
-const popupProName = popupElement.querySelector('.edit-profile__input_profile_name');
-const popupProJob = popupElement.querySelector('.edit-profile__input_profile_job');
-const profileEditSubmit = popupElement.querySelector('.edit-profile__form');
+const popupProName = popupElement.querySelector('.popup__input_profile_name');
+const popupProJob = popupElement.querySelector('.popup__input_profile_job');
+const profileEditSubmit = popupElement.querySelector('.popup__form');
 
 //попап добавления карточки
 const newCardPopup = document.querySelector('.new-card');
 const cardTemplate = document.querySelector('.card');
 const cardGrid = document.querySelector('.elements');
 const newCardButton = document.querySelector('.profile__add-button');
-const closeCardButton = document.querySelector('.new-card__close');
-const newCardForm = document.querySelector('.new-card__form');
-const nameInput = newCardForm.querySelector('.new-card__input_mesto_name');
-const linkInput = newCardForm.querySelector('.new-card__input_mesto_link');
+const closeCardButton = newCardPopup.querySelector('.popup__close');
+const newCardForm = newCardPopup.querySelector('.popup__form');
+const nameInput = newCardForm.querySelector('.popup__input_mesto_name');
+const linkInput = newCardForm.querySelector('.popup__input_mesto_link');
 
 //попап открытия фотографии на весь экран
 const fullScreenPhotoPopup = document.querySelector('.fullscreen');
-const closefullScreenPhotoPopupButton = document.querySelector('.fullscreen__close');
-const fullScreenPhotoData = fullScreenPhotoPopup.querySelector('.fullscreen__photo');
-const fullScreenTitleData = fullScreenPhotoPopup.querySelector('.fullscreen__title');
+const closefullScreenPhotoPopupButton = fullScreenPhotoPopup.querySelector('.popup__close');
+const fullScreenPhotoData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-photo');
+const fullScreenTitleData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-title');
 
 //универскальные функции открытия и закрытия попапа
 const openPopup = (popup) => { popup.classList.add('popup_open'); };
@@ -57,8 +57,8 @@ const createCardElement = (cardData) => {
   cardPhoto.src = cardData.link;
   cardPhoto.alt = cardData.name;
 
-  const deleteCardButton = cardElement.querySelector('.card__delete-button');
-  const likeCardButton = cardElement.querySelector('.elements__like_type_like');
+  const deleteCardButton = cardElement.querySelector('.elements__delete-button');
+  const likeCardButton = cardElement.querySelector('.elements__like');
 
   const handleDelete = () => {
     cardElement.remove();

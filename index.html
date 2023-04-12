@@ -38,35 +38,35 @@
   </footer>
 
   <div class="edit-profile  popup">
-    <div class="edit-profile__container  popup__container">
+    <div class="popup__container">
       <button class="popup__close  link-effect" type="button"></button>
-      <h2 class="edit-profile__title  popup__title">Редактировать профиль</h2>
-      <form class="edit-profile__form  popup__form" name="form">
-        <input type="text" class="edit-profile__input  popup__input  edit-profile__input_profile_name" name="name" placeholder="Введите имя">
-        <input type="text" class="edit-profile__input  popup__input  edit-profile__input_profile_job" name="job" placeholder="Введите статус">
-        <button class="edit-profile__submit  popup__submit" type="submit">Сохранить</button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form" name="form">
+        <input type="text" class="popup__input  popup__input_profile_name" name="name" placeholder="Введите имя">
+        <input type="text" class="popup__input  popup__input_profile_job" name="job" placeholder="Введите статус">
+        <button class="popup__submit" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
 
   <div class="new-card  popup">
-    <div class="new-card__container  popup__container">
-      <button class="new-card__close  popup__close  link-effect" type="button"></button>
-      <h2 class="new-card__title  popup__title">Новое место</h2>
-      <form class="new-card__form  popup__form" name="form">
-        <input type="text" class="new-card__input  popup__input  new-card__input_mesto_name" name="name" placeholder="Название">
-        <input type="text" class="new-card__input  popup__input  new-card__input_mesto_link" name="link"
+    <div class="popup__container">
+      <button class="popup__close  link-effect" type="button"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="form">
+        <input type="text" class="popup__input  popup__input_mesto_name" name="name" placeholder="Название">
+        <input type="text" class="popup__input  popup__input_mesto_link" name="link"
           placeholder="Ссылка на картинку">
-        <button class="new-card__submit  popup__submit" type="submit">Создать</button>
+        <button class="popup__submit" type="submit">Создать</button>
       </form>
     </div>
   </div>
 
   <div class="fullscreen  popup">
-    <div class="fullscreen__container  popup__container-photo">
-      <button class="fullscreen__close  popup__close  link-effect" type="button"></button>
-      <img src=# alt="" class="fullscreen__photo  popup__fullscreen-photo">
-      <h3 class="fullscreen__title  popup__fullscreen-title">Место</h3>
+    <div class="popup__container-photo">
+      <button class="popup__close  link-effect" type="button"></button>
+      <img src=# alt="" class="popup__fullscreen-photo">
+      <h3 class="popup__fullscreen-title">Место</h3>
     </div>
   </div>
 
@@ -74,8 +74,8 @@
     <div class="elements__element">
       <img src="#" alt="" class="elements__photo">
       <h2 class="elements__tag  textcut">Место</h2>
-      <button class="elements__like  elements__like_type_like" type="button"></button>
-      <button class="card__delete-button  link-effect" type="button"></button>
+      <button class="elements__like" type="button"></button>
+      <button class="elements__delete-button  link-effect" type="button"></button>
     </div>
   </template>
   <script src="./scripts/cards.js"></script>
