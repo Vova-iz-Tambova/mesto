@@ -26,7 +26,12 @@ const fullScreenPhotoData = fullScreenPhotoPopup.querySelector('.popup__fullscre
 const fullScreenTitleData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-title');
 
 //универскальные функции открытия и закрытия попапа
-const openPopup = (popup) => { popup.classList.add('popup_open'); };
+const openPopup = (popup) => {
+  popup.classList.add('popup_open');
+  document.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Escape') {
+    closePopup (popup)}}
+  )};
 const closePopup = (popup) => { popup.classList.remove('popup_open'); };
 
 //обработка событий открытия окна редактирования профиля
