@@ -6,14 +6,17 @@ const config = {
   errorClass: 'popup__error'
 }
 
-const form = document.querySelector(config.formSelector)
 
-const enableValidation = () => {
-  form.addEventListener('submit', (evt) => {
-    evt.preventDefault()
+
+const enableValidation = (config) => {
+  const forms = Array.from(document.querySelectorAll(config.formSelector))
+  forms.forEach(form => {
+    form.addEventListener('submit', (evt) => {
+      evt.preventDefault()
+    })
+    setEventListeners(form);
   })
-  setEventListeners(form);
-}
+  }
 
 const setEventListeners = (formToValidate) => {
   const formInputs = Array.from(formToValidate.querySelectorAll(config.inputSelector))
@@ -30,9 +33,8 @@ const setEventListeners = (formToValidate) => {
     })
   }
 
-
 const checkInputValidity = (input) => {
-  const currentInputErrorSpan = form.querySelector(`#${input.id}-error`)
+  const currentInputErrorSpan = document.querySelector(`#${input.id}-error`)
   if (input.checkValidity()) {
     currentInputErrorSpan.textContent = ''
   } else {
