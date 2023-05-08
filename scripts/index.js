@@ -1,7 +1,6 @@
 //попап редактирования профиля
 const popupElement = document.querySelector('.edit-profile');
 const popupProfileButtonElement = document.querySelector('.profile__edit-button');
-const popupCloseButtonElement = popupElement.querySelector('.popup__close');
 const profileElement = document.querySelector('.profile__profile-info');
 const nameVar = profileElement.querySelector('.profile__name');
 const jobVar = profileElement.querySelector('.profile__status');
@@ -14,25 +13,31 @@ const newCardPopup = document.querySelector('.new-card');
 const cardTemplate = document.querySelector('.card');
 const cardGrid = document.querySelector('.elements');
 const newCardButton = document.querySelector('.profile__add-button');
-const closeCardButton = newCardPopup.querySelector('.popup__close');
 const newCardForm = newCardPopup.querySelector('.popup__form');
 const nameInput = newCardForm.querySelector('.popup__input_mesto_name');
 const linkInput = newCardForm.querySelector('.popup__input_mesto_link');
 
 //попап открытия фотографии на весь экран
 const fullScreenPhotoPopup = document.querySelector('.fullscreen');
-const closefullScreenPhotoPopupButton = fullScreenPhotoPopup.querySelector('.popup__close');
 const fullScreenPhotoData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-photo');
 const fullScreenTitleData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-title');
 
 //универскальные функции открытия и закрытия попапа
+const closePopup = (popup) => { popup.classList.remove('popup_open'); };
+
 const openPopup = (popup) => {
   popup.classList.add('popup_open');
+  document.addEventListener('click', function (evt) {
+    if ((evt.target.classList.contains('popup__close'))
+      || (evt.target.classList.contains('popup_open'))) {
+      closePopup(popup);
+    }
+  });
   document.addEventListener('keydown', function (evt) {
     if (evt.key === 'Escape') {
     closePopup (popup)}}
-  )};
-const closePopup = (popup) => { popup.classList.remove('popup_open'); };
+  )
+};
 
 //обработка событий открытия окна редактирования профиля
 popupProfileButtonElement.addEventListener('click', () => {
@@ -40,8 +45,6 @@ popupProfileButtonElement.addEventListener('click', () => {
   popupProJob.value = jobVar.textContent;
   openPopup(popupElement);
 });
-//обработка событий закрытия окна редактирования профиля
-popupCloseButtonElement.addEventListener('click', () => { closePopup(popupElement); });
 //обработка событий отправки данных редактирования профиля
 profileEditSubmit.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -96,7 +99,6 @@ initialCards.forEach((card) => {
 });
 
 newCardButton.addEventListener('click', () => { openPopup(newCardPopup); });
-closeCardButton.addEventListener('click', () => { closePopup(newCardPopup); });
 
 const handleNewCardSubmit = (event) => {
   event.preventDefault();
@@ -114,5 +116,3 @@ const handleNewCardSubmit = (event) => {
 };
 
 newCardForm.addEventListener('submit', handleNewCardSubmit);
-
-closefullScreenPhotoPopupButton.addEventListener('click', () => { closePopup(fullScreenPhotoPopup); });
