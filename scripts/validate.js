@@ -12,24 +12,23 @@ const enableValidation = (config) => {
     form.addEventListener('submit', (evt) => {
       evt.preventDefault()
     })
-    setEventListeners(form);
-  })
-  }
-
-const setEventListeners = (form) => {
-  const formInputs = Array.from(form.querySelectorAll(config.inputSelector))
-  const formButton = form.querySelector(config.submitButtonSelector)
-  disableButton(formButton)
-  formInputs.forEach(input => {
-    input.addEventListener('input', () => {
-      checkInputValidity(input)
-      if (hasInvalidInput(formInputs)) {
-        disableButton(formButton)
-      } else {
-        enableButton(formButton)
-      }})
+    const formInputs = Array.from(form.querySelectorAll(config.inputSelector))
+    const formButton = form.querySelector(config.submitButtonSelector)
+    disableButton(formButton)
+    formInputs.forEach(input => {
+      input.addEventListener('input', () => {
+        checkInputValidity(input)
+        if (hasInvalidInput(formInputs)) {
+          disableButton(formButton)
+        } else {
+          enableButton(formButton)
+        }
+      })
     })
-  }
+  })
+}
+
+
 
 const checkInputValidity = (input) => {
   const currentInputErrorSpan = document.querySelector(`#${input.id}-error`)
