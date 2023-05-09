@@ -6,8 +6,6 @@ const config = {
   errorClass: 'popup__error'
 }
 
-
-
 const enableValidation = (config) => {
   const forms = Array.from(document.querySelectorAll(config.formSelector))
   forms.forEach(form => {
@@ -18,9 +16,9 @@ const enableValidation = (config) => {
   })
   }
 
-const setEventListeners = (formToValidate) => {
-  const formInputs = Array.from(formToValidate.querySelectorAll(config.inputSelector))
-  const formButton = formToValidate.querySelector(config.submitButtonSelector)
+const setEventListeners = (form) => {
+  const formInputs = Array.from(form.querySelectorAll(config.inputSelector))
+  const formButton = form.querySelector(config.submitButtonSelector)
   disableButton(formButton)
   formInputs.forEach(input => {
     input.addEventListener('input', () => {
