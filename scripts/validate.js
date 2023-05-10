@@ -1,4 +1,4 @@
-const config = {
+const validationList = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit',
@@ -6,29 +6,30 @@ const config = {
   errorClass: 'popup__error'
 }
 
-const enableValidation = (config) => {
-  const forms = Array.from(document.querySelectorAll(config.formSelector))
+const enableValidation = (validationList) => {
+  const forms = Array.from(document.querySelectorAll(validationList.formSelector))
   forms.forEach(form => {
     form.addEventListener('submit', (evt) => {
       evt.preventDefault()
     })
-    const formInputs = Array.from(form.querySelectorAll(config.inputSelector))
-    const formButton = form.querySelector(config.submitButtonSelector)
-    disableButton(formButton)
-    formInputs.forEach(input => {
-      input.addEventListener('input', () => {
-        checkInputValidity(input)
-        if (hasInvalidInput(formInputs)) {
-          disableButton(formButton)
-        } else {
-          enableButton(formButton)
-        }
-      })
-    })
+    setEventListeners(form);
   })
-}
+  }
 
-
+const setEventListeners = (form) => {
+  const formInputs = Array.from(form.querySelectorAll(validationList.inputSelector))
+  const formButton = form.querySelector(validationList.submitButtonSelector)
+  disableButton(formButton)
+  formInputs.forEach(input => {
+    input.addEventListener('input', () => {
+      checkInputValidity(input)
+      if (hasInvalidInput(formInputs)) {
+        disableButton(formButton)
+      } else {
+        enableButton(formButton)
+      }})
+    })
+  }
 
 const checkInputValidity = (input) => {
   const currentInputErrorSpan = document.querySelector(`#${input.id}-error`)
@@ -44,13 +45,13 @@ const hasInvalidInput = (formInputs) => {
 }
 
 const enableButton = (button) => {
-  button.classList.remove(config.inactiveButtonClass)
+  button.classList.remove(validationList.inactiveButtonClass)
   button.removeAttribute('disabled')
 }
 
 const disableButton = (button) => {
-  button.classList.add(config.inactiveButtonClass)
+  button.classList.add(validationList.inactiveButtonClass)
   button.setAttribute('disabled', true)
 }
 
-enableValidation(config)
+enableValidation(validationList)
