@@ -62,7 +62,8 @@ profileEditSubmit.addEventListener('submit', function (event) {
   nameVar.textContent = popupProName.value;
   jobVar.textContent = popupProJob.value;
   closePopup();
-  disableButton(profileEditSubmitButton)
+  profileEditSubmitButton.classList.add('popup__submit_disabled');
+  profileEditSubmitButton.setAttribute('disabled', true)
 });
 
 const createCardElement = (cardData) => {
@@ -127,7 +128,8 @@ const handleNewCardSubmit = (event) => {
   addCardElement(createCardElement(newCardData));
   closePopup();
   newCardForm.reset();
-  disableButton(newCardFormSubmit)
+  newCardFormSubmit.classList.add('popup__submit_disabled');
+  newCardFormSubmit.setAttribute('disabled', true)
 };
 
 newCardForm.addEventListener('submit', handleNewCardSubmit);
