@@ -11,18 +11,13 @@ const profileEditSubmitButton = popupElement.querySelector('.popup__submit');
 
 //попап добавления карточки
 const newCardPopup = document.querySelector('.new-card');
-const cardTemplate = document.querySelector('.card');
-const cardGrid = document.querySelector('.elements');
 const newCardButton = document.querySelector('.profile__add-button');
 const newCardForm = newCardPopup.querySelector('.popup__form');
 const newCardFormSubmit = newCardForm.querySelector('.popup__submit')
 const nameInput = newCardForm.querySelector('.popup__input_mesto_name');
 const linkInput = newCardForm.querySelector('.popup__input_mesto_link');
 
-//попап открытия фотографии на весь экран
-const fullScreenPhotoPopup = document.querySelector('.fullscreen');
-const fullScreenPhotoData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-photo');
-const fullScreenTitleData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-title');
+import { addNewClassCard } from './card.js'
 
 export const openPopup = (popup) => {
   popup.classList.add('popup_open')
@@ -66,70 +61,17 @@ profileEditSubmit.addEventListener('submit', function (event) {
   profileEditSubmitButton.setAttribute('disabled', true)
 });
 
-const createCardElement = (cardData) => {
-  const cardElement = cardTemplate.content
-    .querySelector('.elements__element')
-    .cloneNode(true);
-
-  const cardName = cardElement.querySelector('.elements__tag');
-  const cardPhoto = cardElement.querySelector('.elements__photo');
-
-  cardName.textContent = cardData.name;
-  cardPhoto.src = cardData.link;
-  cardPhoto.alt = cardData.name;
-
-  const deleteCardButton = cardElement.querySelector('.elements__delete-button');
-  const likeCardButton = cardElement.querySelector('.elements__like');
-
-  const handleDelete = () => {
-    cardElement.remove();
-  };
-
-  const handleLike = () => {
-    likeCardButton.classList.toggle('elements__like_active');
-  };
-
-  const handlePhoto = () => {
-    fullScreenPhotoData.src = cardPhoto.src;
-    fullScreenPhotoData.alt = cardName.textContent;
-    fullScreenTitleData.textContent = cardName.textContent;
-    openPopup(fullScreenPhotoPopup);
-  };
-
-  deleteCardButton.addEventListener('click', handleDelete);
-  likeCardButton.addEventListener('click', handleLike);
-  cardPhoto.addEventListener('click', handlePhoto);
-
-  return cardElement;
-};
-
-const addCardElement = (cardElement) => {
-  cardGrid.prepend(cardElement);
-};
-
-//initialCards.forEach((card) => {
-//  addCardElement(createCardElement(card));
-//});
-
 newCardButton.addEventListener('click', () => {
+  newCardForm.reset();
+  newCardFormSubmit.classList.add('popup__submit_disabled');
+  newCardFormSubmit.setAttribute('disabled', true)
   openPopup(newCardPopup)
 })
 
 const handleNewCardSubmit = (event) => {
   event.preventDefault();
-
-  const name = nameInput.value;
-  const link = linkInput.value;
-
-  const newCardData = {
-    name, link
-  };
-
-  addCardElement(createCardElement(newCardData));
+  addNewClassCard(nameInput.value, linkInput.value);
   closePopup();
-  newCardForm.reset();
-  newCardFormSubmit.classList.add('popup__submit_disabled');
-  newCardFormSubmit.setAttribute('disabled', true)
 };
 
 newCardForm.addEventListener('submit', handleNewCardSubmit);

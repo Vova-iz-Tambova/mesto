@@ -73,8 +73,12 @@ class Card {
   }
 }
 
-items.forEach((item) => {
-  const card = new Card(item.name, item.link);
+export const addNewClassCard = (name, link) => {
+  const card = new Card(name, link);
   const cardElement = card.generateCard();
-  document.querySelector('.elements').append(cardElement);
+  document.querySelector('.elements').prepend(cardElement);
+}
+
+items.forEach((item) => {
+  addNewClassCard(item.name, item.link)
 });
