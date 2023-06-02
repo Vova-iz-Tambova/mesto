@@ -24,3 +24,25 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+
+
+
+class Card {
+  constructor(text, image) {
+    this._text = text;
+    this._image = image;
+  }
+
+  _getTamplate() {
+    const cardElement = document
+      .querySelector('.card')
+      .textContent
+      .querySelector('.elements__element')
+      .cloneNode(true);
+
+    return cardElement;
+  }
+}
+
+const card = new Card('ghbdtn?', '1.jpg');

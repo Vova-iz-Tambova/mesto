@@ -24,7 +24,7 @@ const fullScreenPhotoPopup = document.querySelector('.fullscreen');
 const fullScreenPhotoData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-photo');
 const fullScreenTitleData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-title');
 
-const openPopup = (popup) => {
+export const openPopup = (popup) => {
   popup.classList.add('popup_open')
   document.addEventListener('keydown', closePopupByEsc)
   document.addEventListener('click', closePopupButtonOverlay)
@@ -107,9 +107,9 @@ const addCardElement = (cardElement) => {
   cardGrid.prepend(cardElement);
 };
 
-initialCards.forEach((card) => {
-  addCardElement(createCardElement(card));
-});
+//initialCards.forEach((card) => {
+//  addCardElement(createCardElement(card));
+//});
 
 newCardButton.addEventListener('click', () => {
   openPopup(newCardPopup)
