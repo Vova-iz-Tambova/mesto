@@ -1,13 +1,13 @@
 //попап редактирования профиля
-const popupElement = document.querySelector('.edit-profile');
+const editProfilePopup = document.querySelector('.edit-profile');
 const popupProfileButtonElement = document.querySelector('.profile__edit-button');
 const profileElement = document.querySelector('.profile__profile-info');
 const nameVar = profileElement.querySelector('.profile__name');
 const jobVar = profileElement.querySelector('.profile__status');
-const popupProName = popupElement.querySelector('.popup__input_profile_name');
-const popupProJob = popupElement.querySelector('.popup__input_profile_job');
-const profileEditSubmit = popupElement.querySelector('.popup__form');
-const profileEditSubmitButton = popupElement.querySelector('.popup__submit');
+const popupProName = editProfilePopup.querySelector('.popup__input_profile_name');
+const popupProJob = editProfilePopup.querySelector('.popup__input_profile_job');
+const profileEditSubmit = editProfilePopup.querySelector('.popup__form');
+const profileEditSubmitButton = editProfilePopup.querySelector('.popup__submit');
 
 //попап добавления карточки
 const newCardPopup = document.querySelector('.new-card');
@@ -18,6 +18,10 @@ const nameInput = newCardForm.querySelector('.popup__input_mesto_name');
 const linkInput = newCardForm.querySelector('.popup__input_mesto_link');
 
 import { addNewClassCard } from './card.js'
+import { enableValidation } from './FormValidator.js'
+
+enableValidation(editProfilePopup)
+enableValidation(newCardPopup)
 
 export const openPopup = (popup) => {
   popup.classList.add('popup_open')
@@ -49,7 +53,7 @@ const closePopupButtonOverlay = (evt) => {
 popupProfileButtonElement.addEventListener('click', () => {
   popupProName.value = nameVar.textContent;
   popupProJob.value = jobVar.textContent;
-  openPopup(popupElement);
+  openPopup(editProfilePopup);
 });
 //обработка событий отправки данных редактирования профиля
 profileEditSubmit.addEventListener('submit', function (event) {
