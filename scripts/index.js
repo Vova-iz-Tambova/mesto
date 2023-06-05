@@ -53,6 +53,8 @@ const closePopupButtonOverlay = (evt) => {
 popupProfileButtonElement.addEventListener('click', () => {
   popupProName.value = nameVar.textContent;
   popupProJob.value = jobVar.textContent;
+  profileEditSubmitButton.classList.add('popup__submit_disabled');
+  profileEditSubmitButton.setAttribute('disabled', true)
   openPopup(editProfilePopup);
 });
 //обработка событий отправки данных редактирования профиля
@@ -61,8 +63,6 @@ profileEditSubmit.addEventListener('submit', function (event) {
   nameVar.textContent = popupProName.value;
   jobVar.textContent = popupProJob.value;
   closePopup();
-  profileEditSubmitButton.classList.add('popup__submit_disabled');
-  profileEditSubmitButton.setAttribute('disabled', true)
 });
 
 newCardButton.addEventListener('click', () => {

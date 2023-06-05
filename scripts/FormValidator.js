@@ -1,80 +1,67 @@
-const enableToValidation = ({ formSelector, ...rest }) => {
-  const forms = Array.from(document.querySelectorAll(formSelector))
-  forms.forEach((form) => {
-    form.addEventListener('submit', (evt) => {
-      evt.preventDefault()
-    })
-    setFormEventListeners(form, rest)
-  })
-}
-
-const setFormEventListeners = (formToValidate, { inputSelector, submitButtonSelector, ...rest }) => {
-  const formInputs = Array.from(formToValidate.querySelectorAll(inputSelector));
-  const formButton = formToValidate.querySelector(submitButtonSelector);
-  disableButton(formButton, rest)
-  formInputs.forEach((input) => {
-    input.addEventListener('input', () => {
-      checkValidity(input, rest)
-      if (hasInvalidInput(formInputs)) {
-        disableButton(formButton, rest)
-      }
-      else {
-        enableButton(formButton, rest)
-      }
-    }
-    )
-  })
-}
-
-const checkValidity = (input, { inputErrorClass, ...rest }) => {
-  const currentInputErrorContainer = document.querySelector(`#${input.id}-error`)
-  if (input.validity.valid) {
-    currentInputErrorContainer.textContent = ''
-    input.classList.remove(inputErrorClass)
-  } else {
-    currentInputErrorContainer.textContent = input.validationMessage
-    input.classList.add(inputErrorClass)
-  }
-}
-
-const hasInvalidInput = (formInputs) => {
-  return formInputs.some((item) => { return !item.validity.valid })
-}
-
-const disableButton = (button, { inactiveButtonClass }) => {
-  button.classList.add(inactiveButtonClass);
-  button.setAttribute('disabled', true)
-}
-
-const enableButton = (button, { inactiveButtonClass }) => {
-  button.classList.remove(inactiveButtonClass)
-  button.removeAttribute('disabled')
+const validationList = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disabled',
+  errorClass: 'popup__error'
 }
 
 class FormValidator {
-  constructor (popup) {
-    this._popup = popup
+  constructor(validationList, popup) {
+    this._formSelector = validationList.formSelector;
+    this._form = popup.querySelector(this._formSelector);
+    this._inputSelector = validationList.inputSelector;
+    this._inputs = popup.querySelectorAll(this._inputSelector);
+    this._submitButtonSelector = popup.querySelector(validationList.submitButtonSelector);
+    this._inactiveButtonClass = validationList.inactiveButtonClass;
+    this._errorClass = validationList.errorClass;
   }
 
-_getPopupToValidate() {
-  const popupElementValid = popup
-  .querySelector('.card')
-  .content
-  .querySelector('.elements__element')
-  .cloneNode(true);
-return popupElementValid;
+  _checkValidity = (input) => {
+    this._input = input
+    this._currentInputErrorContainer = document.querySelector(`#${input.id}-error`)
+    if (this._input.validity.valid) {
+      this._currentInputErrorContainer.textContent = ''
+      this._currentInputErrorContainer.classList.remove(this._errorClass)
+    } else {
+      this._currentInputErrorContainer.textContent = input.validationMessage
+      this._currentInputErrorContainer.classList.add(this._errorClass)
+      this._disableButton(this._submitButtonSelector)
+    }
+  }
 
-}
+  _setFormEventListeners() {
+    this._inputs.forEach(input => {
+      input.addEventListener('input', (evt) => {
+        this._checkValidity(input)
+        if (this._hasInvalidInput()) {
+          this._disableButton(this._submitButtonSelector)
+        } else {
+          this._enableButton(this._submitButtonSelector)
+        }
+      })
+    })
+  }
+
+  _hasInvalidInput = (formInputs) => {
+    formInputs = Array.from(this._inputs)
+    return formInputs.some((input) => { return !input.validity.valid })
+  }
+
+  _disableButton = (button) => {
+    button.classList.add(this._inactiveButtonClass);
+    button.setAttribute('disabled', true)
+  }
+
+  _enableButton = (button) => {
+    button.classList.remove(this._inactiveButtonClass)
+    button.removeAttribute('disabled')
+  }
 }
 
+// =============================
 export const enableValidation = (popup) => {
-  const popupValidate = new FormValidator(popup)
-  enableToValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__submit',
-    inactiveButtonClass: 'popup__submit_disabled',
-    inputErrorClass: 'popup__error',
-    errorClass: 'error'
-  })
+  const newValidateClass = new FormValidator(validationList, popup)
+  newValidateClass._setFormEventListeners()
+  console.log(newValidateClass._form)
 }
