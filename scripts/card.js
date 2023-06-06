@@ -1,36 +1,10 @@
-const items = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 import { openPopup } from './index.js'
 
-class Card {
-  constructor(name, link) {
-    this._name = name;
-    this._link = link;
+export class Card {
+  constructor(name, link, templateSelector) {
+    this._name = name
+    this._link = link
+    this._templateSelector = templateSelector
   }
 
   _getTemplate() {
@@ -41,6 +15,16 @@ class Card {
       .cloneNode(true);
 
     return cardElement;
+  }
+
+  _openFullScreenImage() {
+    const fullScreenPhotoPopup = document.querySelector('.fullscreen');
+    const fullScreenPhotoData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-photo');
+    const fullScreenTitleData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-title');
+    fullScreenPhotoData.src = this._link;
+    fullScreenPhotoData.alt = this._name;
+    fullScreenTitleData.textContent = this._name;
+    openPopup(fullScreenPhotoPopup);
   }
 
   _setEventListeners() {
@@ -54,31 +38,16 @@ class Card {
     });
     // слушатель картинки
     this._element.querySelector('.elements__photo').addEventListener('click', () => {
-      const fullScreenPhotoPopup = document.querySelector('.fullscreen');
-      const fullScreenPhotoData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-photo');
-      const fullScreenTitleData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-title');
-      fullScreenPhotoData.src = this._link;
-      fullScreenPhotoData.alt = this._name;
-      fullScreenTitleData.textContent = this._name;
-      openPopup(fullScreenPhotoPopup);
+      this._openFullScreenImage()
     });
   }
 
   generateCard() {
     this._element = this._getTemplate();
     this._element.querySelector('.elements__photo').src = this._link;
+    this._element.querySelector('.elements__photo').alt = this._name;
     this._element.querySelector('.elements__tag').textContent = this._name;
     this._setEventListeners(); // слушатели
     return this._element;
   }
 }
-
-export const addNewClassCard = (name, link) => {
-  const card = new Card(name, link);
-  const cardElement = card.generateCard();
-  document.querySelector('.elements').prepend(cardElement);
-}
-
-items.forEach((item) => {
-  addNewClassCard(item.name, item.link)
-});

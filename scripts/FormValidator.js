@@ -1,46 +1,31 @@
-const validationList = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_disabled',
-  errorClass: 'popup__error'
-}
+export class FormValidator {
 
-class FormValidator {
-  constructor(validationList, popup) {
-    this._formSelector = validationList.formSelector;
-    this._form = popup.querySelector(this._formSelector);
-    this._inputSelector = validationList.inputSelector;
-    this._inputs = popup.querySelectorAll(this._inputSelector);
-    this._submitButtonSelector = popup.querySelector(validationList.submitButtonSelector);
-    this._inactiveButtonClass = validationList.inactiveButtonClass;
-    this._errorClass = validationList.errorClass;
+  constructor(params, formElement) {
+    this._params = params
+    this._formElement = formElement
+    this._button = this._formElement.querySelector(this._params.submitButtonSelector)
+    this._inputs = this._formElement.querySelectorAll(this._params.inputSelector)
   }
 
   _checkValidity = (input) => {
-    this._input = input
-    this._currentInputErrorContainer = document.querySelector(`#${input.id}-error`)
-    if (this._input.validity.valid) {
-      this._currentInputErrorContainer.textContent = ''
-      this._currentInputErrorContainer.classList.remove(this._errorClass)
+    this._inputError = this._formElement.querySelector(`#error-${input.id}`)
+    if (input.validity.valid) {
+      input.classList.remove(this._params.errorClass)
+      this._inputError.textContent = ''
     } else {
-      this._currentInputErrorContainer.textContent = input.validationMessage
-      this._currentInputErrorContainer.classList.add(this._errorClass)
-      this._disableButton(this._submitButtonSelector)
+      input.classList.add(this._params.errorClass)
+      this._inputError.textContent = input.validationMessage
     }
   }
 
-  _setFormEventListeners() {
-    this._inputs.forEach(input => {
-      input.addEventListener('input', (evt) => {
-        this._checkValidity(input)
-        if (this._hasInvalidInput()) {
-          this._disableButton(this._submitButtonSelector)
-        } else {
-          this._enableButton(this._submitButtonSelector)
-        }
-      })
-    })
+  _disableButton = () => {
+    this._button.setAttribute('disabled', '')
+    this._button.classList.add(this._params.inactiveButtonClass)
+  }
+
+  _enableButton = () => {
+    this._button.removeAttribute('disabled')
+    this._button.classList.remove(this._params.inactiveButtonClass)
   }
 
   _hasInvalidInput = (formInputs) => {
@@ -48,20 +33,21 @@ class FormValidator {
     return formInputs.some((input) => { return !input.validity.valid })
   }
 
-  _disableButton = (button) => {
-    button.classList.add(this._inactiveButtonClass);
-    button.setAttribute('disabled', true)
+  _setFormEventListeners() {
+    this._inputs.forEach(input => {
+      input.addEventListener('input', () => {
+        this._checkValidity(input)
+        if (this._hasInvalidInput()) {
+          this._disableButton()
+        } else {
+          this._enableButton()
+        }
+      })
+    })
   }
 
-  _enableButton = (button) => {
-    button.classList.remove(this._inactiveButtonClass)
-    button.removeAttribute('disabled')
+  enableValidation() {
+    this._setFormEventListeners()
   }
-}
 
-// =============================
-export const enableValidation = (popup) => {
-  const newValidateClass = new FormValidator(validationList, popup)
-  newValidateClass._setFormEventListeners()
-  console.log(newValidateClass._form)
 }

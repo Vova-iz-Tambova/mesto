@@ -1,12 +1,45 @@
+const items = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+]
+
+const params = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disabled',
+  errorClass: 'popup__error'
+}
 //попап редактирования профиля
 const editProfilePopup = document.querySelector('.edit-profile');
 const popupProfileButtonElement = document.querySelector('.profile__edit-button');
-const profileElement = document.querySelector('.profile__profile-info');
-const nameVar = profileElement.querySelector('.profile__name');
-const jobVar = profileElement.querySelector('.profile__status');
-const popupProName = editProfilePopup.querySelector('.popup__input_profile_name');
-const popupProJob = editProfilePopup.querySelector('.popup__input_profile_job');
-const profileEditSubmit = editProfilePopup.querySelector('.popup__form');
+const valueNameFormProfile = document.querySelector('.profile__name');
+const valueJobFormProfile = document.querySelector('.profile__status');
+const inputNameFormProfile = editProfilePopup.querySelector('.popup__input_profile_name');
+const inputJobFormProfile = editProfilePopup.querySelector('.popup__input_profile_job');
+const formPopupProfile = editProfilePopup.querySelector('.popup__form');
 const profileEditSubmitButton = editProfilePopup.querySelector('.popup__submit');
 
 //попап добавления карточки
@@ -17,13 +50,25 @@ const newCardFormSubmit = newCardForm.querySelector('.popup__submit')
 const nameInput = newCardForm.querySelector('.popup__input_mesto_name');
 const linkInput = newCardForm.querySelector('.popup__input_mesto_link');
 
-import { addNewClassCard } from './card.js'
-import { enableValidation } from './FormValidator.js'
+const templateSelector = document.querySelector('.card');
 
-enableValidation(editProfilePopup)
-enableValidation(newCardPopup)
+
+import { Card } from './Card.js'
+import { FormValidator } from './old.js'
+
+const addNewClassCard = (name, link, templateSelector) => {
+  const card = new Card(name, link, templateSelector);
+  const cardElement = card.generateCard();
+  document.querySelector('.elements').prepend(cardElement);
+}
+
+items.forEach((item) => {
+  addNewClassCard(item.name, item.link, templateSelector)
+});
 
 export const openPopup = (popup) => {
+  const popupValidate = new FormValidator(params, popup)
+  popupValidate.enableValidation()
   popup.classList.add('popup_open')
   document.addEventListener('keydown', closePopupByEsc)
   document.addEventListener('click', closePopupButtonOverlay)
@@ -51,17 +96,17 @@ const closePopupButtonOverlay = (evt) => {
 
 //обработка событий открытия окна редактирования профиля
 popupProfileButtonElement.addEventListener('click', () => {
-  popupProName.value = nameVar.textContent;
-  popupProJob.value = jobVar.textContent;
+  inputNameFormProfile.value = valueNameFormProfile.textContent;
+  inputJobFormProfile.value = valueJobFormProfile.textContent;
   profileEditSubmitButton.classList.add('popup__submit_disabled');
   profileEditSubmitButton.setAttribute('disabled', true)
   openPopup(editProfilePopup);
 });
 //обработка событий отправки данных редактирования профиля
-profileEditSubmit.addEventListener('submit', function (event) {
+formPopupProfile.addEventListener('submit', function (event) {
   event.preventDefault();
-  nameVar.textContent = popupProName.value;
-  jobVar.textContent = popupProJob.value;
+  valueNameFormProfile.textContent = inputNameFormProfile.value;
+  valueJobFormProfile.textContent = inputJobFormProfile.value;
   closePopup();
 });
 
