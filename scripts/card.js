@@ -1,6 +1,7 @@
+export {Card}
 import { openPopup } from './index.js'
 
-export class Card {
+class Card {
   constructor(name, link, templateSelector) {
     this._name = name
     this._link = link
