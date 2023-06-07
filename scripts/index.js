@@ -40,13 +40,13 @@ const valueJobFormProfile = document.querySelector('.profile__status');
 const inputNameFormProfile = editProfilePopup.querySelector('.popup__input_profile_name');
 const inputJobFormProfile = editProfilePopup.querySelector('.popup__input_profile_job');
 const formPopupProfile = editProfilePopup.querySelector('.popup__form');
-const profileEditSubmitButton = editProfilePopup.querySelector('.popup__submit');
+// const profileEditSubmitButton = editProfilePopup.querySelector('.popup__submit');
 
 //попап добавления карточки
 const newCardPopup = document.querySelector('.new-card');
 const newCardButton = document.querySelector('.profile__add-button');
 const newCardForm = newCardPopup.querySelector('.popup__form');
-const newCardFormSubmit = newCardForm.querySelector('.popup__submit')
+// const newCardFormSubmit = newCardForm.querySelector('.popup__submit')
 const nameInput = newCardForm.querySelector('.popup__input_mesto_name');
 const linkInput = newCardForm.querySelector('.popup__input_mesto_link');
 
@@ -125,6 +125,6 @@ const handleNewCardSubmit = (event) => {
   event.preventDefault();
   addNewClassCard(nameInput.value, linkInput.value);
   closePopup();
-};
+}
 
-newCardForm.addEventListener('submit', handleNewCardSubmit);
+newCardForm.addEventListener('submit', handleNewCardSubmit)
