@@ -1,7 +1,6 @@
-export {Card}
 import { openPopup } from './index.js'
 
-class Card {
+export class Card {
   constructor(name, link, templateSelector) {
     this._name = name
     this._link = link
@@ -28,27 +27,36 @@ class Card {
     openPopup(fullScreenPhotoPopup);
   }
 
-  _setEventListeners() {
-    // слушатель лайка
-    this._element.querySelector('.elements__like').addEventListener('click', () => {
-      this._element.querySelector('.elements__like').classList.toggle('elements__like_active');
-    });
-    // слушатель корзины
-    this._element.querySelector('.elements__delete-button').addEventListener('click', () => {
-      this._element.remove();
-    });
-    // слушатель картинки
-    this._element.querySelector('.elements__photo').addEventListener('click', () => {
+  _lsnToggleFavoriteCard() {
+    this._templateSelector.querySelector('.elements__like').addEventListener('click', () => {
+      this._templateSelector.querySelector('.elements__like').classList.toggle('elements__like_active');
+    })
+  }
+
+  _lsnDeleteCardOnList() {
+    this._templateSelector.querySelector('.elements__delete-button').addEventListener('click', () => {
+      this._templateSelector.remove();
+    })
+  }
+
+  _lsnFullscreenCardImage() {
+    this._templateSelector.querySelector('.elements__photo').addEventListener('click', () => {
       this._openFullScreenImage()
-    });
+    })
+  }
+
+  _setEventListeners() {
+    this._lsnToggleFavoriteCard()
+    this._lsnDeleteCardOnList()
+    this._lsnFullscreenCardImage()
   }
 
   generateCard() {
-    this._element = this._getTemplate();
-    this._element.querySelector('.elements__photo').src = this._link;
-    this._element.querySelector('.elements__photo').alt = this._name;
-    this._element.querySelector('.elements__tag').textContent = this._name;
+    this._templateSelector = this._getTemplate();
+    this._templateSelector.querySelector('.elements__photo').src = this._link;
+    this._templateSelector.querySelector('.elements__photo').alt = this._name;
+    this._templateSelector.querySelector('.elements__tag').textContent = this._name;
     this._setEventListeners(); // слушатели
-    return this._element;
+    return this._templateSelector;
   }
 }
