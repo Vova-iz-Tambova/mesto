@@ -1,44 +1,28 @@
 export class FormValidator {
-
   constructor(params, formElement) {
     this._params = params
     this._formElement = formElement
-    this._button = this._formElement.querySelector(this._params.submitButtonSelector)
-    this._inputs = this._formElement.querySelectorAll(this._params.inputSelector)
+    this._inputs = this._formElement.querySelectorAll(this._params.inputSelector);
+    this._button = this._formElement.querySelector(this._params.submitButtonSelector);
   }
 
   _checkValidity = (input) => {
-    this._inputError = this._formElement.querySelector(`#error-${input.id}`)
+    this._currentInputErrorContainer = document.querySelector(`#${input.id}-error`)
     if (input.validity.valid) {
-      input.classList.remove(this._params.errorClass)
-      this._inputError.textContent = ''
+      this._currentInputErrorContainer.textContent = ''
+      this._currentInputErrorContainer.classList.remove(this._params._errorClass)
     } else {
-      input.classList.add(this._params.errorClass)
-      this._inputError.textContent = input.validationMessage
+      this._currentInputErrorContainer.textContent = input.validationMessage
+      this._currentInputErrorContainer.classList.add(this._params._errorClass)
     }
   }
 
-  _disableButton = () => {
-    this._button.setAttribute('disabled', '')
-    this._button.classList.add(this._params.inactiveButtonClass)
-  }
-
-  _enableButton = () => {
-    this._button.removeAttribute('disabled')
-    this._button.classList.remove(this._params.inactiveButtonClass)
-  }
-
-  _hasInvalidInput = (formInputs) => {
-    formInputs = Array.from(this._inputs)
-    return formInputs.some((input) => { return !input.validity.valid })
-  }
-
-  _setFormEventListeners() {
+  _setFormEventListeners = () => {
     this._inputs.forEach(input => {
       input.addEventListener('input', () => {
         this._checkValidity(input)
         if (this._hasInvalidInput()) {
-          this._disableButton()
+          this.disableButton()
         } else {
           this._enableButton()
         }
@@ -46,8 +30,21 @@ export class FormValidator {
     })
   }
 
-  enableValidation() {
-    this._setFormEventListeners()
+  _hasInvalidInput = (formInputs) => {
+    formInputs = Array.from(this._inputs)
+    return formInputs.some((input) => { return !input.validity.valid })
   }
 
+  disableButton = () => {
+    this._button.classList.add(this._params.inactiveButtonClass);
+    this._button.setAttribute('disabled', true)
+  }
+
+  _enableButton = () => {
+    this._button.classList.remove(this._params.inactiveButtonClass)
+    this._button.removeAttribute('disabled')
+  }
+  enableValidation = () => {
+    this._setFormEventListeners()
+  }
 }

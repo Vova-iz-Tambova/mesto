@@ -52,23 +52,27 @@ const linkInput = newCardForm.querySelector('.popup__input_mesto_link');
 
 const templateSelector = document.querySelector('.card');
 
-
 import { Card } from './Card.js'
-import { FormValidator } from './old.js'
+import { FormValidator } from './FormValidator.js'
 
+// создание новой карточки
 const addNewClassCard = (name, link, templateSelector) => {
   const card = new Card(name, link, templateSelector);
   const cardElement = card.generateCard();
   document.querySelector('.elements').prepend(cardElement);
 }
-
+// загрузка карточк из базы
 items.forEach((item) => {
   addNewClassCard(item.name, item.link, templateSelector)
-});
+})
+// включение валидации
+const editProfilePopupValidate = new FormValidator(params, editProfilePopup)
+editProfilePopupValidate.enableValidation()
+
+const newCardPopupValidate = new FormValidator(params, newCardPopup)
+newCardPopupValidate.enableValidation()
 
 export const openPopup = (popup) => {
-  const popupValidate = new FormValidator(params, popup)
-  popupValidate.enableValidation()
   popup.classList.add('popup_open')
   document.addEventListener('keydown', closePopupByEsc)
   document.addEventListener('click', closePopupButtonOverlay)
@@ -96,11 +100,11 @@ const closePopupButtonOverlay = (evt) => {
 
 //обработка событий открытия окна редактирования профиля
 popupProfileButtonElement.addEventListener('click', () => {
-  inputNameFormProfile.value = valueNameFormProfile.textContent;
-  inputJobFormProfile.value = valueJobFormProfile.textContent;
-  profileEditSubmitButton.classList.add('popup__submit_disabled');
-  profileEditSubmitButton.setAttribute('disabled', true)
-  openPopup(editProfilePopup);
+  inputNameFormProfile.value = valueNameFormProfile.textContent
+  inputJobFormProfile.value = valueJobFormProfile.textContent
+  editProfilePopupValidate.disableButton()
+  openPopup(editProfilePopup)
+
 });
 //обработка событий отправки данных редактирования профиля
 formPopupProfile.addEventListener('submit', function (event) {
@@ -112,9 +116,9 @@ formPopupProfile.addEventListener('submit', function (event) {
 
 newCardButton.addEventListener('click', () => {
   newCardForm.reset();
-  newCardFormSubmit.classList.add('popup__submit_disabled');
-  newCardFormSubmit.setAttribute('disabled', true)
+  newCardPopupValidate.disableButton()
   openPopup(newCardPopup)
+
 })
 
 const handleNewCardSubmit = (event) => {
