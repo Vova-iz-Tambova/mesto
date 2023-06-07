@@ -1,6 +1,6 @@
 import { openPopup } from './index.js'
 
-class Card {
+export class Card {
   constructor(name, link, templateSelector) {
     this._name = name
     this._link = link
@@ -51,5 +51,3 @@ class Card {
     return this._element;
   }
 }
-
-export { Card }
