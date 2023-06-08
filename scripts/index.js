@@ -1,4 +1,4 @@
-import { Card } from './Card.js'
+import { Card } from './Aard.js'
 import { FormValidator } from './FormValidator.js'
 
 const items = [
