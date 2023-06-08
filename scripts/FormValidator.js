@@ -2,8 +2,8 @@ export class FormValidator {
   constructor(params, formElement) {
     this._params = params
     this._formElement = formElement
-    this._inputs = this._formElement.querySelectorAll(this._params.inputSelector);
-    this._button = this._formElement.querySelector(this._params.submitButtonSelector);
+    this._inputs = this._formElement.querySelectorAll(this._params.inputSelector)
+    this._button = this._formElement.querySelector(this._params.submitButtonSelector)
   }
 
   _checkValidity = (input) => {

@@ -1,4 +1,4 @@
-import { Card } from './Aard.js'
+import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
 
 const items = [
@@ -53,7 +53,7 @@ const newCardForm = newCardPopup.querySelector('.popup__form');
 const nameInput = newCardForm.querySelector('.popup__input_mesto_name');
 const linkInput = newCardForm.querySelector('.popup__input_mesto_link');
 
-const templateSelector = document.querySelector('.card');
+const templateSelector = '.card'
 
 // создание новой карточки
 const addNewClassCard = (name, link, templateSelector) => {

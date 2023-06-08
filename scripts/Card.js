@@ -9,7 +9,7 @@ export class Card {
 
   _getTemplate() {
     const cardElement = document
-      .querySelector('.card')
+      .querySelector(this._templateSelector)
       .content
       .querySelector('.elements__element')
       .cloneNode(true);
@@ -28,19 +28,19 @@ export class Card {
   }
 
   _lsnToggleFavoriteCard() {
-    this._templateSelector.querySelector('.elements__like').addEventListener('click', () => {
-      this._templateSelector.querySelector('.elements__like').classList.toggle('elements__like_active');
+    this._element.querySelector('.elements__like').addEventListener('click', () => {
+      this._element.querySelector('.elements__like').classList.toggle('elements__like_active');
     })
   }
 
   _lsnDeleteCardOnList() {
-    this._templateSelector.querySelector('.elements__delete-button').addEventListener('click', () => {
-      this._templateSelector.remove();
+    this._element.querySelector('.elements__delete-button').addEventListener('click', () => {
+      this._element.remove();
     })
   }
 
   _lsnFullscreenCardImage() {
-    this._templateSelector.querySelector('.elements__photo').addEventListener('click', () => {
+    this._element.querySelector('.elements__photo').addEventListener('click', () => {
       this._openFullScreenImage()
     })
   }
@@ -52,11 +52,11 @@ export class Card {
   }
 
   generateCard() {
-    this._templateSelector = this._getTemplate();
-    this._templateSelector.querySelector('.elements__photo').src = this._link;
-    this._templateSelector.querySelector('.elements__photo').alt = this._name;
-    this._templateSelector.querySelector('.elements__tag').textContent = this._name;
-    this._setEventListeners(); // слушатели
-    return this._templateSelector;
+    this._element = this._getTemplate()
+    this._element.querySelector('.elements__photo').src = this._link
+    this._element.querySelector('.elements__photo').alt = this._name
+    this._element.querySelector('.elements__tag').textContent = this._name
+    this._setEventListeners()
+    return this._element
   }
 }
