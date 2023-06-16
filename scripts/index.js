@@ -1,5 +1,10 @@
-import { Card } from './Card.js'
-import { FormValidator } from './FormValidator.js'
+import Card from './Card.js'
+import FormValidator from './FormValidator.js'
+import Section from './Section.js'
+import Popup from './Popup.js'
+import PopupWithImage from './PopupWithImage.js'
+import PopupWithForm from './PopupWithForm.js'
+import UserInfo from './UserInfo.js'
 
 const items = [
   {
@@ -56,10 +61,10 @@ const linkInput = newCardForm.querySelector('.popup__input_mesto_link');
 const templateSelector = '.card'
 
 // создание новой карточки
-const addNewClassCard = (name, link, templateSelector) => {
-  const card = new Card(name, link, templateSelector);
-  const cardElement = card.generateCard();
-  document.querySelector('.elements').prepend(cardElement);
+const addNewClassCard = (mesto, link, templateSelector) => {
+  const card = new Card(mesto, link, templateSelector)
+  const cardElement = card.generateCard()
+  document.querySelector('.elements').prepend(cardElement)
 }
 // загрузка карточк из базы
 items.forEach((item) => {
@@ -123,7 +128,7 @@ newCardButton.addEventListener('click', () => {
 
 const handleNewCardSubmit = (event) => {
   event.preventDefault();
-  addNewClassCard(nameInput.value, linkInput.value);
+  addNewClassCard(nameInput.value, linkInput.value, templateSelector);
   closePopup();
 }
 

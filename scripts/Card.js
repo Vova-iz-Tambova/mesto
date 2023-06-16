@@ -1,6 +1,6 @@
 import { openPopup } from './index.js'
 
-export class Card {
+export default class Card {
   constructor(name, link, templateSelector) {
     this._name = name
     this._link = link
@@ -19,7 +19,7 @@ export class Card {
 
   _openFullScreenImage() {
     const fullScreenPhotoPopup = document.querySelector('.fullscreen');
-    const fullScreenPhotoData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-photo');
+    const fullScreenPhotoData = document.querySelector('.popup__fullscreen-photo');
     const fullScreenTitleData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-title');
     fullScreenPhotoData.src = this._link;
     fullScreenPhotoData.alt = this._name;
