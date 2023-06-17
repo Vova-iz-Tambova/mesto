@@ -58,17 +58,19 @@ const newCardForm = newCardPopup.querySelector('.popup__form');
 const nameInput = newCardForm.querySelector('.popup__input_mesto_name');
 const linkInput = newCardForm.querySelector('.popup__input_mesto_link');
 
-const templateSelector = '.card'
-
 // создание новой карточки
-const addNewClassCard = (mesto, link, templateSelector) => {
-  const card = new Card(mesto, link, templateSelector)
+const addNewClassCard = (name, link) => {
+  const card = new Card({name, link, handleCardClick: () => {
+    const photoShow = new PopupWithImage('.fullscreen')
+    photoShow.setEventListeners()
+    // photoShow.open(name, link)
+  }}, '.card')
   const cardElement = card.generateCard()
   document.querySelector('.elements').prepend(cardElement)
 }
 // загрузка карточк из базы
 items.forEach((item) => {
-  addNewClassCard(item.name, item.link, templateSelector)
+  addNewClassCard(item.name, item.link)
 })
 // включение валидации
 const editProfilePopupValidate = new FormValidator(params, editProfilePopup)
@@ -128,7 +130,7 @@ newCardButton.addEventListener('click', () => {
 
 const handleNewCardSubmit = (event) => {
   event.preventDefault();
-  addNewClassCard(nameInput.value, linkInput.value, templateSelector);
+  addNewClassCard(nameInput.value, linkInput.value);
   closePopup();
 }
 
