@@ -1,4 +1,4 @@
-// import { openPopup } from './index.js'
+import { openPopup } from './index.js'
 
 export default class Card {
   constructor({name, link, handleCardClick}, templateSelector) {
@@ -18,15 +18,15 @@ export default class Card {
     return cardElement;
   }
 
-  // _openFullScreenImage() {
-  //   const fullScreenPhotoPopup = document.querySelector('.fullscreen');
-  //   const fullScreenPhotoData = document.querySelector('.popup__fullscreen-photo');
-  //   const fullScreenTitleData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-title');
-  //   fullScreenPhotoData.src = this._link;
-  //   fullScreenPhotoData.alt = this._name;
-  //   fullScreenTitleData.textContent = this._name;
-  //   openPopup(fullScreenPhotoPopup);
-  // }
+  _openFullScreenImage() {
+    const fullScreenPhotoPopup = document.querySelector('.fullscreen');
+    const fullScreenPhotoData = document.querySelector('.popup__fullscreen-photo');
+    const fullScreenTitleData = fullScreenPhotoPopup.querySelector('.popup__fullscreen-title');
+    fullScreenPhotoData.src = this._link;
+    fullScreenPhotoData.alt = this._name;
+    fullScreenTitleData.textContent = this._name;
+    openPopup(fullScreenPhotoPopup);
+  }
 
   _lsnToggleFavoriteCard() {
     this._element.querySelector('.elements__like').addEventListener('click', () => {
@@ -40,16 +40,16 @@ export default class Card {
     })
   }
 
-  // _lsnFullscreenCardImage() {
-  //   this._element.querySelector('.elements__photo').addEventListener('click', () => {
-  //     this._openFullScreenImage()
-  //   })
-  // }
+  _lsnFullscreenCardImage() {
+    this._element.querySelector('.elements__photo').addEventListener('click', () => {
+      this._openFullScreenImage()
+    })
+  }
 
   _setEventListeners() {
     this._lsnToggleFavoriteCard()
     this._lsnDeleteCardOnList()
-    // this._lsnFullscreenCardImage()
+    this._lsnFullscreenCardImage()
 
   }
 

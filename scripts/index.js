@@ -58,10 +58,12 @@ const newCardForm = newCardPopup.querySelector('.popup__form');
 const nameInput = newCardForm.querySelector('.popup__input_mesto_name');
 const linkInput = newCardForm.querySelector('.popup__input_mesto_link');
 
+const fullScreenPhotoPopup = document.querySelector('.fullscreen');
+
 // создание новой карточки
 const addNewClassCard = (name, link) => {
   const card = new Card({name, link, handleCardClick: () => {
-    const photoShow = new PopupWithImage('.fullscreen')
+    const photoShow = new PopupWithImage(fullScreenPhotoPopup)
     photoShow.setEventListeners()
     // photoShow.open(name, link)
   }}, '.card')
@@ -80,9 +82,12 @@ const newCardPopupValidate = new FormValidator(params, newCardPopup)
 newCardPopupValidate.enableValidation()
 
 export const openPopup = (popup) => {
-  popup.classList.add('popup_open')
-  document.addEventListener('keydown', closePopupByEsc)
-  document.addEventListener('click', closePopupButtonOverlay)
+  const openNewPopup = new Popup(popup)
+  openNewPopup.open()
+  openNewPopup.setEventListeners()
+  // popup.classList.add('popup_open')
+  // document.addEventListener('keydown', closePopupByEsc)
+  // document.addEventListener('click', closePopupButtonOverlay)
 }
 
 function closePopup() {
