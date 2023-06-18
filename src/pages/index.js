@@ -1,4 +1,4 @@
-// import './index.css'
+import './index.css'
 //===============================================
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
@@ -117,7 +117,6 @@ const cardPopupWhithForm = new PopupWithForm({
 newCardButton.addEventListener('click', () => {
   newCardPopupValidate.disableButton()
   cardPopupWhithForm.open()
-
 })
 //слушатель попапа создание карточки
 cardPopupWhithForm.setEventListeners()
