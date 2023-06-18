@@ -1,5 +1,5 @@
-import './index.css'
-
+// import './index.css'
+//===============================================
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
 import Section from '../components/Section.js'
@@ -7,34 +7,28 @@ import Popup from '../components/Popup.js'
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
-
-const items = [
+//===============================================
+const initialCards = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    name: 'Архыз', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    name: 'Челябинская область', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    name: 'Иваново', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    name: 'Камчатка', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    name: 'Холмогорский район', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    name: 'Байкал', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ]
-
+//===============================================
 const params = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -42,6 +36,7 @@ const params = {
   inactiveButtonClass: 'popup__submit_disabled',
   errorClass: 'popup__error'
 }
+//===============================================
 //попап редактирования профиля
 const editProfilePopup = document.querySelector('.edit-profile');
 const popupProfileButtonElement = document.querySelector('.profile__edit-button');
@@ -60,85 +55,82 @@ const newCardForm = newCardPopup.querySelector('.popup__form');
 const nameInput = newCardForm.querySelector('.popup__input_mesto_name');
 const linkInput = newCardForm.querySelector('.popup__input_mesto_link');
 
-const fullScreenPhotoPopup = document.querySelector('.fullscreen');
+const fullScreenPhotoPopup = document.querySelector('.fullscreen')
+// const cardTemplate = document.querySelector('.card')
 
-// создание новой карточки
-const addNewClassCard = (name, link) => {
-  const card = new Card({name, link, handleCardClick: () => {
-    const photoShow = new PopupWithImage(fullScreenPhotoPopup)
-    photoShow.setEventListeners()
-    // photoShow.open(name, link)
-  }}, '.card')
-  const cardElement = card.generateCard()
-  document.querySelector('.elements').prepend(cardElement)
-}
-// загрузка карточк из базы
-items.forEach((item) => {
-  addNewClassCard(item.name, item.link)
+
+const sectionCardElement = document.querySelector('.elements')
+// const car = document.querySelector('.elements')
+
+
+//===============================================
+//получение данных профиля
+const userInfo = new UserInfo({
+  profileName: valueNameFormProfile,
+  profileStatus: valueJobFormProfile
 })
-// включение валидации
+//создания класса редактирования профиля
+const profilePopupWhithForm = new PopupWithForm({
+  popupSelector: editProfilePopup,
+  handleFormSubmit: (input) => {
+    const data = {
+      profileName: input['nameOwner'],
+      profileStatus: input['job']
+    }
+    userInfo.setUserInfo(data)
+    profilePopupWhithForm.close()
+  }
+})
+//обработка событий открытия окна редактирования профиля
+popupProfileButtonElement.addEventListener('click', () => {
+  const data = userInfo.getUserInfo()
+  inputNameFormProfile.value = data.profileName
+  inputJobFormProfile.value = data.profileStatus
+  editProfilePopupValidate.disableButton()
+  profilePopupWhithForm.open()
+})
+//слушатели попапа редактирования профиля
+profilePopupWhithForm.setEventListeners()
+// включение валидации редактирования профиля
 const editProfilePopupValidate = new FormValidator(params, editProfilePopup)
 editProfilePopupValidate.enableValidation()
 
-const newCardPopupValidate = new FormValidator(params, newCardPopup)
-newCardPopupValidate.enableValidation()
-
-export const openPopup = (popup) => {
-  const openNewPopup = new Popup(popup)
-  openNewPopup.open()
-  openNewPopup.setEventListeners()
-  // popup.classList.add('popup_open')
-  // document.addEventListener('keydown', closePopupByEsc)
-  // document.addEventListener('click', closePopupButtonOverlay)
+//===============================================
+const openfullScreenImage = new PopupWithImage({ popupSelector: fullScreenPhotoPopup })
+//процедура создания новой карточки с помошью класса
+const createCard = (data) => {
+  const card = new Card({
+    cardData: data,
+    handleCardClick: () => {
+      openfullScreenImage.open(data)
+    }
+  }, '.card')
+  const cardElement = card.generateCard()
+  sectionCardElement.prepend(cardElement)
 }
-
-function closePopup() {
-  const popup = document.querySelector('.popup_open')
-  popup.classList.remove('popup_open')
-  document.removeEventListener('keydown', closePopupByEsc)
-  document.removeEventListener('click', closePopupButtonOverlay)
-}
-
-const closePopupByEsc = (evt) => {
-  if (evt.key === 'Escape') {
-    closePopup()
+// загрузка карточк из массива
+const section = new Section({ items: initialCards, renderer: createCard }, sectionCardElement)
+section.renderer()
+//обработка данных формы создания карточки
+const cardPopupWhithForm = new PopupWithForm({
+  popupSelector: newCardPopup,
+  handleFormSubmit: (input) => {
+    const cardData = {
+      name: input['name'],
+      link: input['link']
+    }
+    section.addItem(cardData)
+    cardPopupWhithForm.close()
   }
-}
-
-const closePopupButtonOverlay = (evt) => {
-  if ((evt.target.classList.contains('popup__close'))
-    || (evt.target.classList.contains('popup_open'))) {
-    closePopup()
-  }
-}
-
-//обработка событий открытия окна редактирования профиля
-popupProfileButtonElement.addEventListener('click', () => {
-  inputNameFormProfile.value = valueNameFormProfile.textContent
-  inputJobFormProfile.value = valueJobFormProfile.textContent
-  editProfilePopupValidate.disableButton()
-  openPopup(editProfilePopup)
-
-});
-//обработка событий отправки данных редактирования профиля
-formPopupProfile.addEventListener('submit', function (event) {
-  event.preventDefault();
-  valueNameFormProfile.textContent = inputNameFormProfile.value;
-  valueJobFormProfile.textContent = inputJobFormProfile.value;
-  closePopup();
-});
-
+})
+//открытие попапа создания карточки
 newCardButton.addEventListener('click', () => {
-  newCardForm.reset();
   newCardPopupValidate.disableButton()
-  openPopup(newCardPopup)
+  cardPopupWhithForm.open()
 
 })
-
-const handleNewCardSubmit = (event) => {
-  event.preventDefault();
-  addNewClassCard(nameInput.value, linkInput.value);
-  closePopup();
-}
-
-newCardForm.addEventListener('submit', handleNewCardSubmit)
+//слушатель попапа создание карточки
+cardPopupWhithForm.setEventListeners()
+// включение валидации добавления карточки
+const newCardPopupValidate = new FormValidator(params, newCardPopup)
+newCardPopupValidate.enableValidation()

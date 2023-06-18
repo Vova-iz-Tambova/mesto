@@ -14,17 +14,17 @@
   border-bottom: 1px solid rgb(255, 0, 0, 1);
 }
 
-/* .popup__input:first-of-type {
+.popup__input:first-of-type {
   height: 32px;
   margin-top: 22px;
 }
 
 .popup__input:last-of-type {
   height: 32px;
-  /* margin-top: 21px;
-}*/
+  margin-top: 21px;
+}
 
-/* @media screen and (max-width: 968px) {
+@media screen and (max-width: 968px) {
   .popup__input {
     width: 238px;
     margin-left: 20px;
@@ -34,4 +34,4 @@
   .popup__input:last-of-type {
     margin-top: 23px;
   }
-} */
+}
