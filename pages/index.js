@@ -3,7 +3,6 @@
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
 import Section from '../components/Section.js'
-import Popup from '../components/Popup.js'
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
@@ -38,31 +37,20 @@ const params = {
 }
 //===============================================
 //попап редактирования профиля
-const editProfilePopup = document.querySelector('.edit-profile');
-const popupProfileButtonElement = document.querySelector('.profile__edit-button');
-const valueNameFormProfile = document.querySelector('.profile__name');
-const valueJobFormProfile = document.querySelector('.profile__status');
-const inputNameFormProfile = editProfilePopup.querySelector('.popup__input_profile_name');
-const inputJobFormProfile = editProfilePopup.querySelector('.popup__input_profile_job');
-const formPopupProfile = editProfilePopup.querySelector('.popup__form');
-// const profileEditSubmitButton = editProfilePopup.querySelector('.popup__submit');
-
-//попап добавления карточки
+const editProfilePopup = document.querySelector('.edit-profile')
+const inputNameFormProfile = editProfilePopup.querySelector('.popup__input_profile_name')
+const inputJobFormProfile = editProfilePopup.querySelector('.popup__input_profile_job')
+//===============================================
+const popupProfileButtonElement = document.querySelector('.profile__edit-button')
+const valueNameFormProfile = document.querySelector('.profile__name')
+const valueJobFormProfile = document.querySelector('.profile__status')
+//===============================================
 const newCardPopup = document.querySelector('.new-card');
 const newCardButton = document.querySelector('.profile__add-button');
-const newCardForm = newCardPopup.querySelector('.popup__form');
-// const newCardFormSubmit = newCardForm.querySelector('.popup__submit')
-const nameInput = newCardForm.querySelector('.popup__input_mesto_name');
-const linkInput = newCardForm.querySelector('.popup__input_mesto_link');
-
+//===============================================
 const fullScreenPhotoPopup = document.querySelector('.fullscreen')
-// const cardTemplate = document.querySelector('.card')
-
-
+//===============================================
 const sectionCardElement = document.querySelector('.elements')
-// const car = document.querySelector('.elements')
-
-
 //===============================================
 //получение данных профиля
 const userInfo = new UserInfo({
@@ -94,9 +82,10 @@ profilePopupWhithForm.setEventListeners()
 // включение валидации редактирования профиля
 const editProfilePopupValidate = new FormValidator(params, editProfilePopup)
 editProfilePopupValidate.enableValidation()
-
 //===============================================
+//открытие фото на весь экран
 const openfullScreenImage = new PopupWithImage({ popupSelector: fullScreenPhotoPopup })
+openfullScreenImage.setEventListeners()
 //процедура создания новой карточки с помошью класса
 const createCard = (data) => {
   const card = new Card({
@@ -106,7 +95,8 @@ const createCard = (data) => {
     }
   }, '.card')
   const cardElement = card.generateCard()
-  sectionCardElement.prepend(cardElement)
+  // sectionCardElement.prepend(cardElement)
+  section.addItem(cardElement)
 }
 // загрузка карточк из массива
 const section = new Section({ items: initialCards, renderer: createCard }, sectionCardElement)
@@ -119,7 +109,7 @@ const cardPopupWhithForm = new PopupWithForm({
       name: input['name'],
       link: input['link']
     }
-    section.addItem(cardData)
+    createCard(cardData)
     cardPopupWhithForm.close()
   }
 })
