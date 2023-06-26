@@ -4,4 +4,9 @@
   object-fit: cover;
   aspect-ratio: auto;
   border-radius: 50%;
+  transition: opacity .3s ease-in-out;
+}
+
+.profile__avatar:hover {
+  opacity: .2;
 }

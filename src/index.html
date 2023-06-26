@@ -6,20 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
-  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
+  <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="page">
   <header class="header">
-    <img src="<%=require('./images/logo.svg')%>" alt="логотип сайта" class="header__logo">
-    <!-- <img src="./images/logo.svg" alt="логотип сайта" class="header__logo"> -->
+    <!-- <img src="<%=require('./images/logo.svg')%>" alt="логотип сайта" class="header__logo"> -->
+    <img src="./images/logo.svg" alt="логотип сайта" class="header__logo">
   </header>
 
   <main class="main">
 
     <section class="profile">
-      <img src="<%=require('./images/image.jpg')%>" alt="аватар" class="profile__avatar">
-      <!-- <img src="./images/image.jpg" alt="аватар" class="profile__avatar"> -->
+      <button class="profile__avatar-button">
+        <!-- <img src="<%=require('./images/image.jpg')%>" alt="аватар" class="profile__avatar"> -->
+        <img src="./images/image.jpg" alt="аватар" class="profile__avatar">
+      </button>
       <div class="profile__profile-info">
         <div class="profile__container">
           <h1 class="profile__name textcut">Жак-Ив Кусто</h1>
@@ -38,7 +40,20 @@
   <footer class="footer">
     <p class="footer__copyrigth">&copy; 2023 Вова из Тамбова</p>
   </footer>
-
+  <!-- Форма для смены аватара -->
+  <div class="avatar-change  popup">
+    <div class="popup__container">
+      <button class="popup__close  link-effect" type="button"></button>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form" name="form" novalidate>
+        <input id="avatar" required name="avatar" type="url" class="popup__input  popup__input_avatar_link"
+          placeholder="Ссылка на картинку">
+        <span id="avatar-error" class="popup__error"></span>
+        <button class="popup__submit" type="submit" disabled>Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <!-- Форма редактирования профиля -->
   <div class="edit-profile  popup">
     <div class="popup__container">
       <button class="popup__close  link-effect" type="button"></button>
@@ -54,7 +69,7 @@
       </form>
     </div>
   </div>
-
+  <!-- Создание новой карточки -->
   <div class="new-card  popup">
     <div class="popup__container">
       <button class="popup__close  link-effect" type="button"></button>
@@ -70,7 +85,17 @@
       </form>
     </div>
   </div>
-
+  <!-- Форма удаления карточки -->
+  <div class="confirm-delete  popup">
+    <div class="popup__container">
+      <button class="popup__close  link-effect" type="button"></button>
+      <h2 class="popup__title">Вы уверены?</h2>
+      <form class="popup__form" name="form" novalidate>
+        <button class="popup__submit" type="submit" disabled>Да</button>
+      </form>
+    </div>
+  </div>
+  <!-- Окно просмотра фото на весь екран -->
   <div class="fullscreen  popup">
     <div class="popup__container-photo">
       <button class="popup__close  link-effect" type="button"></button>
@@ -78,16 +103,19 @@
       <h3 class="popup__fullscreen-title">Место</h3>
     </div>
   </div>
-
+  <!-- Шаблон для создания новой карточки -->
   <template class="card" id="card-template">
     <div class="elements__element">
       <img src="#" alt="Место" class="elements__photo">
       <h2 class="elements__tag  textcut">Место</h2>
-      <button class="elements__like" type="button"></button>
+      <div class="elements__likegroup">
+        <button class="elements__like" type="button"></button>
+        <p class="elements__likecount">0</p>
+      </div>
       <button class="elements__delete-button  link-effect" type="button"></button>
     </div>
   </template>
-  <!-- <script type="module" src="./pages/index.js"></script> -->
+  <script type="module" src="./pages/index.js"></script>
 
 </body>
 
