@@ -29,30 +29,37 @@ const userInfo = new UserInfo({
   profileAvatar: '.profile__avatar'
 })
 // загрузка данных профиля с сервера
-api.getUserInfo().then((data) => {userInfo.setUserInfo(data)}).catch((err) => {console.log(err)})
+api.getUserInfo().then((data) => { userInfo.setUserInfo(data) }).catch((err) => { console.log(err) })
 
 // Создания копии класса для редактирования профиля
 const profilePopupWhithForm = new PopupWithForm({
   popupSelector: '.edit-profile',
   handleFormSubmit: (input) => {
     const data = {
-      profileName: input['profileName'],
-      profileStatus: input['profileStatus']
+      name: input['profileName'],
+      about: input['profileStatus']
     }
-    userInfo.setUserInfo(data)
-    profilePopupWhithForm.close()
+    api.setUserInfo(data).then((res) => {
+      userInfo.setUserInfo(res)
+      profilePopupWhithForm.close()
+    })
+      .catch((err) => { console.log(err) })
   }
 })
+
 profilePopupWhithForm.setEventListeners() // включение его слушателей
 // Создания копии класса для смены аватара и включение его слушателей
 const avatarPopupWhithForm = new PopupWithForm({
   popupSelector: '.avatar-change',
   handleFormSubmit: (input) => {
     const data = {
-      profileAvatar: input['profileAvatar'],
+      avatar: input['profileAvatar']
     }
-    document.querySelector('.profile__avatar').src = data.profileAvatar
-    avatarPopupWhithForm.close()
+    api.setUserAvatar(data).then((res) => {
+      userInfo.setUserInfo(res)
+      avatarPopupWhithForm.close()
+    })
+      .catch((err) => { console.log(err) })
   }
 })
 avatarPopupWhithForm.setEventListeners() // включение слушателей
@@ -80,6 +87,12 @@ document.querySelector('.profile__avatar-button').addEventListener('click', () =
 //==============================================================================================
 // РАБОТА С КАРТОЧКАМИ
 //==============================================================================================
+
+// разметка карточки в секцию
+const section = new Section({ renderer: (cardData) => createCard(cardData) }, '.elements')
+// загрузка карточек с сервера
+api.getInitialCards().then((data) => { section.renderer(data) }).catch((err) => { console.log(err) })
+
 // открытие фото на весь экран
 const openfullScreenImage = new PopupWithImage({ popupSelector: '.fullscreen' })
 openfullScreenImage.setEventListeners()
@@ -94,10 +107,7 @@ const createCard = (data) => {
   const cardElement = card.generateCard()
   return cardElement
 }
-// разметка карточки в секцию
-const section = new Section({renderer: (cardData) => createCard(cardData)},'.elements')
-// загрузка карточек с сервера
-api.getInitialCards().then((data) => {section.renderer(data)}).catch((err) => {console.log(err)})
+
 // обработка данных формы создания карточки
 const cardPopupWhithForm = new PopupWithForm({
   popupSelector: '.new-card',
@@ -110,6 +120,7 @@ const cardPopupWhithForm = new PopupWithForm({
     cardPopupWhithForm.close()
   }
 })
+
 // открытие попапа создания карточки
 document.querySelector('.profile__add-button').addEventListener('click', () => {
   newCardPopupValidate.disableButton()
@@ -120,4 +131,3 @@ cardPopupWhithForm.setEventListeners()
 // включение валидации добавления карточки
 const newCardPopupValidate = new FormValidator(params, '.new-card')
 newCardPopupValidate.enableValidation()
-
