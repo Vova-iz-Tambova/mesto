@@ -45,8 +45,9 @@ export default class Api {
     })
       .then(this._checkResponse)
   }
+  // Отправка на сервер новой карточки
   setNewCard(data) {
-    return fetch(this._baseUrl + "/cards", {
+    return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -56,5 +57,12 @@ export default class Api {
     })
       .then(this._checkResponse)
   }
+  // Удаление своей карточки с сервера
+  delMyCard(cardId) {
+    return fetch(`${this._baseUrl}cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(this._checkResponse)
+  }
 }
-

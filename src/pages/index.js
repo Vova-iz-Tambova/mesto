@@ -87,26 +87,35 @@ document.querySelector('.profile__avatar-button').addEventListener('click', () =
 //==============================================================================================
 // РАБОТА С КАРТОЧКАМИ
 //==============================================================================================
+// открытие фото на весь экран
+const openfullScreenImage = new PopupWithImage({ popupSelector: '.fullscreen' })
+openfullScreenImage.setEventListeners()
+function handleCardClick(data) {openfullScreenImage.open(data)}
 
+// Удаление карточки
+// const confirmDelMyCard = new PopupWithForm({
+//   popupSelector: '.confirm-delete',
+//   handleFormSubmit: () => {
+
+//     api.delMyCard({card}).then((res) => {
+
+//       card._element.remove()
+//       confirmDelMyCard.close()
+//     })
+//       .catch((err) => { console.log(err) })
+//   }
+// })
+
+//процедура создания копии класса карточки
+function createCard(data) {
+  const card = new Card(data, handleCardClick, '.card')
+  const cardElement = card.generateCard()
+  return cardElement
+}
 // разметка карточки в секцию
 const section = new Section({ renderer: (cardData) => createCard(cardData) }, '.elements')
 // загрузка карточек с сервера
 api.getInitialCards().then((data) => { section.rendererAll(data) }).catch((err) => { console.log(err) })
-
-// открытие фото на весь экран
-const openfullScreenImage = new PopupWithImage({ popupSelector: '.fullscreen' })
-openfullScreenImage.setEventListeners()
-//процедура создания копии класса карточки
-const createCard = (data) => {
-  const card = new Card({
-    cardData: data,
-    handleCardClick: () => {
-      openfullScreenImage.open(data)
-    }
-  }, '.card')
-  const cardElement = card.generateCard()
-  return cardElement
-}
 
 // обработка данных формы создания карточки
 const cardPopupWhithForm = new PopupWithForm({
