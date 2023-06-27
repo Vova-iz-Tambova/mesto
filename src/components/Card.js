@@ -1,13 +1,14 @@
 // import { openPopup } from '../pages/index.js'
 
 export default class Card {
-  constructor(cardData, handleCardClick, templateSelector) {
+  constructor(cardData, handleCardClick, {delMyCard}, templateSelector) {
     this._name = cardData.name
     this._link = cardData.link
     this._ownerId = cardData.owner._id
-    this.cardId = cardData._id
+    this._cardId = cardData._id
     this._templateSelector = templateSelector
     this._handleCardClick = handleCardClick
+    this._delMyCard = delMyCard
   }
 
   generateCard() {
@@ -29,6 +30,7 @@ export default class Card {
   _lsnDeleteCardOnList() {
     this._element.querySelector('.elements__delete-button').addEventListener('click', () => {
       this._element.remove()
+      this._delMyCard(this._cardId)
     })
   }
 

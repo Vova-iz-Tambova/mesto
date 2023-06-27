@@ -108,7 +108,9 @@ function handleCardClick(data) {openfullScreenImage.open(data)}
 
 //процедура создания копии класса карточки
 function createCard(data) {
-  const card = new Card(data, handleCardClick, '.card')
+  const card = new Card(data, handleCardClick, {
+    delMyCard: (id) => {api.delMyCard(id)}
+  },'.card')
   const cardElement = card.generateCard()
   return cardElement
 }

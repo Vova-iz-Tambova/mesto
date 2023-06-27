@@ -59,7 +59,7 @@ export default class Api {
   }
   // Удаление своей карточки с сервера
   delMyCard(cardId) {
-    return fetch(`${this._baseUrl}cards/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers
     })
