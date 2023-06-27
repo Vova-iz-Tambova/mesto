@@ -28,7 +28,7 @@ export default class Api {
     })
       .then(this._checkResponse)
   }
-
+  // отправка нового аватара на сервер
   setUserAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
@@ -37,7 +37,6 @@ export default class Api {
     })
       .then(this._checkResponse)
   }
-
   // Получение списка карточек с сервера
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
@@ -46,5 +45,16 @@ export default class Api {
     })
       .then(this._checkResponse)
   }
-
+  setNewCard(data) {
+    return fetch(this._baseUrl + "/cards", {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link
+      })
+    })
+      .then(this._checkResponse)
+  }
 }
+
