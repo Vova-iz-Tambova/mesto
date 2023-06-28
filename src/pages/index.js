@@ -39,11 +39,15 @@ const profilePopupWhithForm = new PopupWithForm({
       name: input['profileName'],
       about: input['profileStatus']
     }
+    profilePopupWhithForm.animationUX(true)
     api.setUserInfo(data).then((res) => {
       userInfo.setUserInfo(res)
       profilePopupWhithForm.close()
     })
       .catch((err) => { console.log(err) })
+      .finally(() => {
+        profilePopupWhithForm.animationUX(false)
+      })
   }
 })
 profilePopupWhithForm.setEventListeners() // включение его слушателей
@@ -55,11 +59,15 @@ const avatarPopupWhithForm = new PopupWithForm({
     const data = {
       avatar: input['profileAvatar']
     }
+    avatarPopupWhithForm.animationUX(true)
     api.setUserAvatar(data).then((res) => {
       userInfo.setUserInfo(res)
       avatarPopupWhithForm.close()
     })
       .catch((err) => { console.log(err) })
+      .finally(() => {
+        avatarPopupWhithForm.animationUX(false)
+      })
   }
 })
 avatarPopupWhithForm.setEventListeners() // включение слушателей
@@ -109,11 +117,23 @@ function createCard(data) {
       confirmDelMyCard.setEventListeners()
       confirmDelMyCard.open()
     },
-    toggleMyLikeCard: () => {
-      api.toggleLike(data._id, true)
+    setMyLikeCard: () => { // проверяет был ли мой лайк на сервере и делает противоположный запрос
+      if (card.checkMyLike()) {
+        api.clearMyLike(data._id)
+          .then((res) => {
+            card.refreshLikeCounter(res)
+          })
+          .catch((err) => { console.log(err) })
+      } else {
+        api.setMyLike(data._id)
+          .then((res) => {
+            card.refreshLikeCounter(res)
+          })
+          .catch((err) => { console.log(err) })
+      }
     }
-  }
-    , '.card')
+    , templateSelector: '.card'
+  })
 
   const cardElement = card.generateCard()
   return cardElement
@@ -132,11 +152,15 @@ const cardPopupWhithForm = new PopupWithForm({
       name: input['name'],
       link: input['link']
     }
+    cardPopupWhithForm.animationUX(true)
     api.setNewCard(data).then((res) => {
       section.addItem(createCard(res))
       cardPopupWhithForm.close()
     })
       .catch((err) => { console.log(err) })
+      .finally(() => {
+        cardPopupWhithForm.animationUX(false)
+      })
   }
 })
 

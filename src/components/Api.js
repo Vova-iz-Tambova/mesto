@@ -65,12 +65,21 @@ export default class Api {
     })
       .then(this._checkResponse)
   }
-// смена отметки нравиться
-  toggleLike(cardId, isLiked) {
+  // установка моей отметки
+  setMyLike(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: isLiked? 'DELETE' : 'PUT',
+      method: 'PUT',
       headers: this._headers
     })
       .then(this._checkResponse)
   }
+  // снятие моей отметки
+  clearMyLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(this._checkResponse)
+  }
+
 }
