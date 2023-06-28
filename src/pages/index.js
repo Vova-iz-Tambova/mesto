@@ -90,12 +90,12 @@ document.querySelector('.profile__avatar-button').addEventListener('click', () =
 //процедура создания копии класса карточки
 function createCard(data) {
   const card = new Card(data, {
-    handleCardClick: () => {
+    handleCardClick: () => {  // открытие картинки на весь экран
       const openfullScreenImage = new PopupWithImage({ popupSelector: '.fullscreen' })
       openfullScreenImage.setEventListeners()
       openfullScreenImage.open(data)
     },
-    delMyCard: () => {
+    delMyCard: () => { // удаление карточки с сервера + DOM через форму подтверждения
       const confirmDelMyCard = new PopupWithForm({
         popupSelector: '.confirm-delete',
         handleFormSubmit: () => {
@@ -108,7 +108,11 @@ function createCard(data) {
       })
       confirmDelMyCard.setEventListeners()
       confirmDelMyCard.open()
-    }}
+    },
+    toggleMyLikeCard: () => {
+      api.toggleLike(data._id, true)
+    }
+  }
     , '.card')
 
   const cardElement = card.generateCard()

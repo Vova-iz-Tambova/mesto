@@ -1,20 +1,22 @@
 // import { openPopup } from '../pages/index.js'
 
 export default class Card {
-  constructor(cardData, { handleCardClick, delMyCard }, templateSelector) {
+  constructor(cardData, { handleCardClick, delMyCard, toggleLikeCard }, templateSelector) {
+    this._card = cardData
     this._name = cardData.name
     this._link = cardData.link
-    this._ownerId = cardData.owner._id
+    this._ownerCardId = cardData.owner._id
     this._cardId = cardData._id
     this._templateSelector = templateSelector
     this._handleCardClick = handleCardClick
     this._delMyCard = delMyCard
+    this._toggleLikeCard = toggleLikeCard
   }
 
   generateCard() {
     this._element = this._getTemplate()
 
-    if (this._ownerId != '1f6084d9f18c31da24de3250') {
+    if (this._ownerCardId != '1f6084d9f18c31da24de3250') { // проеврка id автора карточки с моим id
       (this._element.querySelector('.elements__delete-button')).remove()
     } else {
       this._lsnDeleteCardOnList()
@@ -23,7 +25,8 @@ export default class Card {
     this._element.querySelector('.elements__photo').src = this._link
     this._element.querySelector('.elements__photo').alt = this._name
     this._element.querySelector('.elements__tag').textContent = this._name
-    this._element.setAttribute('Id', this._cardId)
+    this._element.querySelector('.elements__likecount').textContent = this._card.likes.length
+    // this._element.setAttribute('Id', this._cardId)
     this._setEventListeners()
     return this._element
   }
