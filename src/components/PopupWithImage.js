@@ -13,11 +13,4 @@ export default class PopupWithImage extends Popup {
     this._fullScreenPhotoImage.alt = data.name
     this._fullScreenPhotoTitle.textContent = data.name
   }
-
-  // setEventListeners() {
-  //   super.setEventListeners()
-  //   document.querySelector('.elements__photo').addEventListener('click', () => {
-  //     this.open()
-  //   })
-  // }
 }

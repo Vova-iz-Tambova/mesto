@@ -87,33 +87,34 @@ document.querySelector('.profile__avatar-button').addEventListener('click', () =
 //==============================================================================================
 // РАБОТА С КАРТОЧКАМИ
 //==============================================================================================
-// открытие фото на весь экран
-const openfullScreenImage = new PopupWithImage({ popupSelector: '.fullscreen' })
-openfullScreenImage.setEventListeners()
-function handleCardClick(data) {openfullScreenImage.open(data)}
-
-// Удаление карточки
-// const confirmDelMyCard = new PopupWithForm({
-//   popupSelector: '.confirm-delete',
-//   handleFormSubmit: () => {
-
-//     api.delMyCard({card}).then((res) => {
-
-//       card._element.remove()
-//       confirmDelMyCard.close()
-//     })
-//       .catch((err) => { console.log(err) })
-//   }
-// })
-
 //процедура создания копии класса карточки
 function createCard(data) {
-  const card = new Card(data, handleCardClick, {
-    delMyCard: (id) => {api.delMyCard(id)}
-  },'.card')
+  const card = new Card(data, {
+    handleCardClick: () => {
+      const openfullScreenImage = new PopupWithImage({ popupSelector: '.fullscreen' })
+      openfullScreenImage.setEventListeners()
+      openfullScreenImage.open(data)
+    },
+    delMyCard: () => {
+      const confirmDelMyCard = new PopupWithForm({
+        popupSelector: '.confirm-delete',
+        handleFormSubmit: () => {
+          api.delMyCard(data._id).then((res) => {
+            card.deleteCard(res)
+            confirmDelMyCard.close()
+          })
+            .catch((err) => { console.log(err) })
+        }
+      })
+      confirmDelMyCard.setEventListeners()
+      confirmDelMyCard.open()
+    }}
+    , '.card')
+
   const cardElement = card.generateCard()
   return cardElement
 }
+
 // разметка карточки в секцию
 const section = new Section({ renderer: (cardData) => createCard(cardData) }, '.elements')
 // загрузка карточек с сервера

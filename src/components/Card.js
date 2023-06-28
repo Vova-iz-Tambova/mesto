@@ -1,7 +1,7 @@
 // import { openPopup } from '../pages/index.js'
 
 export default class Card {
-  constructor(cardData, handleCardClick, {delMyCard}, templateSelector) {
+  constructor(cardData, { handleCardClick, delMyCard }, templateSelector) {
     this._name = cardData.name
     this._link = cardData.link
     this._ownerId = cardData.owner._id
@@ -23,15 +23,19 @@ export default class Card {
     this._element.querySelector('.elements__photo').src = this._link
     this._element.querySelector('.elements__photo').alt = this._name
     this._element.querySelector('.elements__tag').textContent = this._name
+    this._element.setAttribute('Id', this._cardId)
     this._setEventListeners()
     return this._element
   }
 
   _lsnDeleteCardOnList() {
     this._element.querySelector('.elements__delete-button').addEventListener('click', () => {
-      this._element.remove()
       this._delMyCard(this._cardId)
     })
+  }
+
+  deleteCard() {
+    this._element.remove()
   }
 
   _getTemplate() {
@@ -51,13 +55,12 @@ export default class Card {
 
   _lsnFullscreenCardImage() {
     this._element.querySelector('.elements__photo').addEventListener('click', () => {
-      this._handleCardClick({name: this._name, link: this._link})
+      this._handleCardClick({ name: this._name, link: this._link })
     })
   }
 
   _setEventListeners() {
     this._lsnToggleFavoriteCard()
-    // this._lsnDeleteCardOnList()
     this._lsnFullscreenCardImage()
   }
 }
