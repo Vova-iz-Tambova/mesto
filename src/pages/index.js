@@ -6,6 +6,7 @@ import FormValidator from '../components/FormValidator.js'
 import Section from '../components/Section.js'
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
+import PopupWithConfirm from '../components/PopupWithConfirm.js'
 import UserInfo from '../components/UserInfo.js'
 //==============================================================================================
 import { params } from '../utils/constants.js'
@@ -109,6 +110,9 @@ document.querySelector('.profile__avatar-button').addEventListener('click', () =
 //==============================================================================================
 // РАБОТА С КАРТОЧКАМИ
 //==============================================================================================
+const confirmDelMyCard = new PopupWithConfirm('.confirm-delete')
+confirmDelMyCard.setEventListeners()
+
 //процедура создания копии класса карточки
 function createCard(data) {
   const card = new Card(userId, data, {
@@ -118,18 +122,14 @@ function createCard(data) {
       openfullScreenImage.open(data)
     },
     delMyCard: () => { // удаление карточки с сервера + DOM через форму подтверждения
-      const confirmDelMyCard = new PopupWithForm({
-        popupSelector: '.confirm-delete',
-        handleFormSubmit: () => {
-          api.delMyCard(data._id).then((res) => {
-            card.deleteCard(res)
-            confirmDelMyCard.close()
-          })
-            .catch((err) => { console.log(err) })
-        }
-      })
-      confirmDelMyCard.setEventListeners()
       confirmDelMyCard.open()
+      confirmDelMyCard.submitCallback(() => {
+        api.delMyCard(card.getId()).then(() => {
+          card.deleteCard()
+          confirmDelMyCard.close()
+        })
+          .catch((err) => { console.log(err) })
+      })
     },
     setMyLikeCard: () => { // проверяет был ли мой лайк на сервере и делает противоположный запрос
       if (card.checkMyLike()) {

@@ -20,6 +20,10 @@ export default class Card {
     }
   }
 
+  getId() {
+    return this._cardId
+  }
+
   refreshLikeCounter(data) {
     this._likes = data.likes;
     this._element.querySelector('.elements__likecount').textContent = this._likes.length
@@ -59,7 +63,7 @@ export default class Card {
 
   _lsnDeleteCardOnList() {
     this._element.querySelector('.elements__delete-button').addEventListener('click', () => {
-      this._delMyCard(this._cardId)
+      this._delMyCard()
     })
   }
 
