@@ -44,6 +44,14 @@ export default class FormValidator {
     this._button.classList.remove(this._params.inactiveButtonClass)
     this._button.removeAttribute('disabled')
   }
+
+  resetValidation() {
+    this.disableButton()
+    this._inputs.forEach((input) => {
+      this._checkValidity(input)
+    })
+  }
+
   enableValidation = () => {
     this._setFormEventListeners()
   }

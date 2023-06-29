@@ -52,14 +52,14 @@ const profilePopupWhithForm = new PopupWithForm({
       name: input['profileName'],
       about: input['profileStatus']
     }
-    profilePopupWhithForm.animationUX(true)
+    profilePopupWhithForm.renderLoading(true)
     api.setUserInfo(data).then((res) => {
       userInfo.setUserInfo(res)
       profilePopupWhithForm.close()
     })
       .catch((err) => { console.log(err) })
       .finally(() => {
-        profilePopupWhithForm.animationUX(false)
+        profilePopupWhithForm.renderLoading(false)
       })
   }
 })
@@ -72,14 +72,14 @@ const avatarPopupWhithForm = new PopupWithForm({
     const data = {
       avatar: input['profileAvatar']
     }
-    avatarPopupWhithForm.animationUX(true)
+    avatarPopupWhithForm.renderLoading(true)
     api.setUserAvatar(data).then((res) => {
       userInfo.setUserInfo(res)
       avatarPopupWhithForm.close()
     })
       .catch((err) => { console.log(err) })
       .finally(() => {
-        avatarPopupWhithForm.animationUX(false)
+        avatarPopupWhithForm.renderLoading(false)
       })
   }
 })
@@ -96,13 +96,13 @@ avatarPopupValidate.enableValidation() // включение валидации 
 // Слушатель для открытия формы редактирования профиля
 document.querySelector('.profile__edit-button').addEventListener('click', () => {
   profilePopupWhithForm.setInputValues(userInfo.getUserInfo())
-  editProfilePopupValidate.disableButton()
+  editProfilePopupValidate.resetValidation()
   profilePopupWhithForm.open()
 })
 
 // Слушатель для открытия формы смены аватара
 document.querySelector('.profile__avatar-button').addEventListener('click', () => {
-  avatarPopupValidate.disableButton()
+  avatarPopupValidate.resetValidation()
   avatarPopupWhithForm.open()
 })
 //==============================================================================================
@@ -163,21 +163,21 @@ const cardPopupWhithForm = new PopupWithForm({
       name: input['name'],
       link: input['link']
     }
-    cardPopupWhithForm.animationUX(true)
+    cardPopupWhithForm.renderLoading(true)
     api.setNewCard(data).then((res) => {
       section.addItem(createCard(res))
       cardPopupWhithForm.close()
     })
       .catch((err) => { console.log(err) })
       .finally(() => {
-        cardPopupWhithForm.animationUX(false)
+        cardPopupWhithForm.renderLoading(false)
       })
   }
 })
 
 // открытие попапа создания карточки
 document.querySelector('.profile__add-button').addEventListener('click', () => {
-  newCardPopupValidate.disableButton()
+  newCardPopupValidate.resetValidation()
   cardPopupWhithForm.open()
 })
 // слушатель попапа создание карточки

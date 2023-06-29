@@ -5,9 +5,10 @@ export default class PopupWithForm extends Popup {
     super(popupSelector)
     this._form = this._popupSelector.querySelector('.popup__form')
     this._handleFormSubmit = handleFormSubmit
-    this._input = this._form.querySelectorAll('.popup__input')
+    // this._input = this._form.querySelectorAll('.popup__input')
     this._inputs = Array.from(this._form.querySelectorAll('.popup__input'))
-    this._button = this._form.querySelector('.popup__submit')
+    this._submitBtn = this._form.querySelector('.popup__submit')
+    this._submitBtnText = this._submitBtn.textContent
   }
 
   setInputValues(data) {
@@ -32,11 +33,11 @@ export default class PopupWithForm extends Popup {
     })
   }
 
-  animationUX(evt) {
-    if (evt) {
-      this._button.textContent = 'Сохранение...'
+  renderLoading(isLoading, loadingText='Сохранение...') {
+    if (isLoading) {
+      this._submitBtn.textContent = loadingText
     } else {
-      this._button.textContent = 'Сохранить'
+      this._submitBtn.textContent = this._submitBtnText
     }
   }
 
