@@ -1,6 +1,6 @@
 export default class Card {
-  constructor(cardData, { handleCardClick, delMyCard, setMyLikeCard, templateSelector }) {
-    this._userId = '1f6084d9f18c31da24de3250'
+  constructor(userId, cardData, { handleCardClick, delMyCard, setMyLikeCard, templateSelector }) {
+    this._userId = userId
     this._card = cardData
     this._name = cardData.name
     this._link = cardData.link
@@ -16,7 +16,7 @@ export default class Card {
 
   getMyFovoriteCards() {
     if (this.hasMyLike = this._likes.some((like) => like._id === this._userId)) {
-      this._element.querySelector('.elements__like').classList.add('elements__like_active')
+      this._likeButtonCardElement.classList.add('elements__like_active')
     }
   }
 
@@ -32,8 +32,8 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate()
+    this._likeButtonCardElement = this._element.querySelector('.elements__like')
     this.getMyFovoriteCards()
-
     if (this._ownerCardId != this._userId) { // удаление елемента корзины с карточек баз моего id
       (this._element.querySelector('.elements__delete-button')).remove()
     } else {
@@ -50,8 +50,8 @@ export default class Card {
   }
 
   _lsnToggleFavoriteCard() {
-    this._element.querySelector('.elements__like').addEventListener('click', () => {
-      this._element.querySelector('.elements__like').classList.toggle('elements__like_active')
+    this._likeButtonCardElement.addEventListener('click', () => {
+      this._likeButtonCardElement.classList.toggle('elements__like_active')
       this._setMyLikeCard(this._element)
 
     })

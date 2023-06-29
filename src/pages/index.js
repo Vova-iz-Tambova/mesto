@@ -19,6 +19,20 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 })
+
+let userId
+
+// загрузка данных профиля с сервера // загрузка карточек с сервера
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+])
+  .then(([info, cards]) => {
+    userId = info._id
+    userInfo.setUserInfo(info)
+    section.rendererAll(cards)
+  }).catch((err) => { console.log(err) })
+
 //==============================================================================================
 // РАБОТА С ПРОФИЛЕМ
 //==============================================================================================
@@ -28,8 +42,8 @@ const userInfo = new UserInfo({
   profileStatus: '.profile__status',
   profileAvatar: '.profile__avatar'
 })
-// загрузка данных профиля с сервера
-api.getUserInfo().then((data) => { userInfo.setUserInfo(data) }).catch((err) => { console.log(err) })
+
+
 
 // Создания копии класса для редактирования профиля
 const profilePopupWhithForm = new PopupWithForm({
@@ -97,7 +111,7 @@ document.querySelector('.profile__avatar-button').addEventListener('click', () =
 //==============================================================================================
 //процедура создания копии класса карточки
 function createCard(data) {
-  const card = new Card(data, {
+  const card = new Card(userId, data, {
     handleCardClick: () => {  // открытие картинки на весь экран
       const openfullScreenImage = new PopupWithImage({ popupSelector: '.fullscreen' })
       openfullScreenImage.setEventListeners()
@@ -141,8 +155,6 @@ function createCard(data) {
 
 // разметка карточки в секцию
 const section = new Section({ renderer: (cardData) => createCard(cardData) }, '.elements')
-// загрузка карточек с сервера
-api.getInitialCards().then((data) => { section.rendererAll(data) }).catch((err) => { console.log(err) })
 
 // обработка данных формы создания карточки
 const cardPopupWhithForm = new PopupWithForm({
