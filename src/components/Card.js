@@ -20,10 +20,6 @@ export default class Card {
     }
   }
 
-  getId() {
-    return this._cardId
-  }
-
   refreshLikeCounter(data) {
     this._likes = data.likes;
     this._element.querySelector('.elements__likecount').textContent = this._likes.length
@@ -32,7 +28,6 @@ export default class Card {
   checkMyLike() {
     return this._likes.some((like) => like._id === this._userId)
   }
-
 
   generateCard() {
     this._element = this._getTemplate()

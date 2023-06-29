@@ -23,7 +23,7 @@ const api = new Api({
 
 let userId
 
-// загрузка данных профиля с сервера // загрузка карточек с сервера
+// загрузка данных профиля и карточек с сервера
 Promise.all([
   api.getUserInfo(),
   api.getInitialCards()
@@ -43,8 +43,6 @@ const userInfo = new UserInfo({
   profileStatus: '.profile__status',
   profileAvatar: '.profile__avatar'
 })
-
-
 
 // Создания копии класса для редактирования профиля
 const profilePopupWhithForm = new PopupWithForm({
@@ -110,6 +108,7 @@ document.querySelector('.profile__avatar-button').addEventListener('click', () =
 //==============================================================================================
 // РАБОТА С КАРТОЧКАМИ
 //==============================================================================================
+// создание копии класса формы удаления
 const confirmDelMyCard = new PopupWithConfirm('.confirm-delete')
 confirmDelMyCard.setEventListeners()
 
@@ -124,8 +123,8 @@ function createCard(data) {
     delMyCard: () => { // удаление карточки с сервера + DOM через форму подтверждения
       confirmDelMyCard.open()
       confirmDelMyCard.submitCallback(() => {
-        api.delMyCard(card.getId()).then(() => {
-          card.deleteCard()
+        api.delMyCard(data._id).then((res) => {
+          card.deleteCard(res)
           confirmDelMyCard.close()
         })
           .catch((err) => { console.log(err) })
