@@ -1,5 +1,5 @@
 import './index.css'
-//==============================================================================================
+//========================================================================================
 import Api from '../components/Api.js';
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
@@ -8,11 +8,11 @@ import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import PopupWithConfirm from '../components/PopupWithConfirm.js'
 import UserInfo from '../components/UserInfo.js'
-//==============================================================================================
+//========================================================================================
 import { params } from '../utils/constants.js'
-//==============================================================================================
+//========================================================================================
 // Инициализация подключения api сервера
-//==============================================================================================
+//========================================================================================
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-69',
   headers: {
@@ -31,12 +31,12 @@ Promise.all([
   .then(([info, cards]) => {
     userId = info._id
     userInfo.setUserInfo(info)
-    section.rendererAll(cards)
-  }).catch((err) => { console.log(err) })
+    section.renderItems(cards)
+  }).catch(console.error)
 
-//==============================================================================================
+//========================================================================================
 // РАБОТА С ПРОФИЛЕМ
-//==============================================================================================
+//========================================================================================
 // селекторы данных профиля
 const userInfo = new UserInfo({
   profileName: '.profile__name',
@@ -57,7 +57,7 @@ const profilePopupWhithForm = new PopupWithForm({
       userInfo.setUserInfo(res)
       profilePopupWhithForm.close()
     })
-      .catch((err) => { console.log(err) })
+      .catch(console.error)
       .finally(() => {
         profilePopupWhithForm.renderLoading(false)
       })
@@ -77,7 +77,7 @@ const avatarPopupWhithForm = new PopupWithForm({
       userInfo.setUserInfo(res)
       avatarPopupWhithForm.close()
     })
-      .catch((err) => { console.log(err) })
+      .catch(console.error)
       .finally(() => {
         avatarPopupWhithForm.renderLoading(false)
       })
@@ -105,9 +105,12 @@ document.querySelector('.profile__avatar-button').addEventListener('click', () =
   avatarPopupValidate.resetValidation()
   avatarPopupWhithForm.open()
 })
-//==============================================================================================
+//========================================================================================
 // РАБОТА С КАРТОЧКАМИ
-//==============================================================================================
+//========================================================================================
+// создание копии класа окна просмотра на весь экран
+const openfullScreenImage = new PopupWithImage({ popupSelector: '.fullscreen' })
+openfullScreenImage.setEventListeners()
 // создание копии класса формы удаления
 const confirmDelMyCard = new PopupWithConfirm('.confirm-delete')
 confirmDelMyCard.setEventListeners()
@@ -116,8 +119,6 @@ confirmDelMyCard.setEventListeners()
 function createCard(data) {
   const card = new Card(userId, data, {
     handleCardClick: () => {  // открытие картинки на весь экран
-      const openfullScreenImage = new PopupWithImage({ popupSelector: '.fullscreen' })
-      openfullScreenImage.setEventListeners()
       openfullScreenImage.open(data)
     },
     delMyCard: () => { // удаление карточки с сервера + DOM через форму подтверждения
@@ -127,7 +128,7 @@ function createCard(data) {
           card.deleteCard(res)
           confirmDelMyCard.close()
         })
-          .catch((err) => { console.log(err) })
+          .catch(console.error)
       })
     },
     setMyLikeCard: () => { // проверяет был ли мой лайк на сервере и делает противоположный запрос
@@ -136,13 +137,13 @@ function createCard(data) {
           .then((res) => {
             card.refreshLikeCounter(res)
           })
-          .catch((err) => { console.log(err) })
+          .catch(console.error)
       } else {
         api.setMyLike(data._id)
           .then((res) => {
             card.refreshLikeCounter(res)
           })
-          .catch((err) => { console.log(err) })
+          .catch(console.error)
       }
     }
     , templateSelector: '.card'
@@ -168,7 +169,7 @@ const cardPopupWhithForm = new PopupWithForm({
       section.addItem(createCard(res))
       cardPopupWhithForm.close()
     })
-      .catch((err) => { console.log(err) })
+      .catch(console.error)
       .finally(() => {
         cardPopupWhithForm.renderLoading(false)
       })
